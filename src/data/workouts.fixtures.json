@@ -1,0 +1,14 @@
+[
+  {
+    "id": "fixture-hasfit-legs",
+    "slug": "hasfit-legs-example",
+    "title": "Ноги и ягодицы · пример структуры",
+    "source": "HASfit — контекст задания, не подтверждённый разбор видео",
+    "description": "Демонстрационные данные для разработки. Два повторных вхождения приседа показывают структуру списка. Они не отражают состав или порядок упражнений в видео HASfit.",
+    "status": "needs-review",
+    "exercises": [
+      { "id": "fixture-squat-1", "exerciseId": "ex-db-squat", "order": 1 },
+      { "id": "fixture-squat-2", "exerciseId": "ex-db-squat", "order": 2 }
+    ]
+  }
+]

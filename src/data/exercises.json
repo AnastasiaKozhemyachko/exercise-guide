@@ -1,0 +1,15 @@
+[
+  {
+    "id": "ex-db-squat",
+    "slug": "db-squat",
+    "nameRu": "Присед с гантелями",
+    "nameEn": "DB Squat",
+    "aliases": ["приседания с гантелями", "dumbbell squat", "присед", "скват"],
+    "muscleGroups": ["Ноги", "Ягодицы", "Пресс"],
+    "exerciseType": "Силовые",
+    "thumbnail": "/images/russian_dumbbell_squat_technique_guide.png",
+    "instructionImage": "/images/russian_dumbbell_squat_technique_guide.png",
+    "imageAlt": "Карточка техники приседа с гантелями: исходное положение и присед, линии положения тела, дыхание, частые ошибки и облегчённые варианты.",
+    "status": "verified"
+  }
+]
