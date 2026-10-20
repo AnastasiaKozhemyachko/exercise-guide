@@ -36,6 +36,11 @@ function WorkoutCard({
         </span>
         <h2>{workout.title}</h2>
         <p>{workout.description}</p>
+        {!fixture && workout.status === "needs-review" && (
+          <span className="review-label">
+            Порядок упражнений требует проверки
+          </span>
+        )}
         <span className="workout-card-link">
           {fixture ? "Посмотреть структуру" : "Открыть тренировку"}
           <ArrowRight size={17} />

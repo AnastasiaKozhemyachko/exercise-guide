@@ -40,6 +40,44 @@ export function validateContent(
       errors.push(`Дубликат упражнения ${e.id}`);
     ids.add(String(e.id));
     slugs.add(String(e.slug));
+    if (e.legacyIds !== undefined) {
+      if (!Array.isArray(e.legacyIds) || !e.legacyIds.every(nonempty))
+        errors.push(`Упражнение ${i}: legacyIds`);
+      else
+        for (const id of e.legacyIds) {
+          if (ids.has(id)) errors.push(`Дубликат идентификатора ${id}`);
+          ids.add(id);
+        }
+    }
+    if (
+      e.reviewIssues !== undefined &&
+      (!Array.isArray(e.reviewIssues) || !e.reviewIssues.every(nonempty))
+    )
+      errors.push(`Упражнение ${i}: reviewIssues`);
+    if (
+      e.imageOrigin !== undefined &&
+      e.imageOrigin !== "ai-generated-illustration"
+    )
+      errors.push(`Упражнение ${i}: imageOrigin`);
+    if (
+      e.sourceStatus !== undefined &&
+      ![
+        "needs-technique-and-text-review",
+        "approved-design-reference",
+      ].includes(String(e.sourceStatus))
+    )
+      errors.push(`Упражнение ${i}: sourceStatus`);
+    if (e.reviewPreview !== undefined && typeof e.reviewPreview !== "boolean")
+      errors.push(`Упражнение ${i}: reviewPreview`);
+    if (
+      e.reviewPreview === true &&
+      (e.status !== "needs-review" ||
+        e.imageOrigin !== "ai-generated-illustration")
+    )
+      errors.push(
+        `Упражнение ${i}: черновик требует статуса проверки и происхождения`,
+      );
+
     if (!Array.isArray(e.aliases) || !e.aliases.every(nonempty))
       errors.push(`Упражнение ${i}: aliases`);
     if (
@@ -88,6 +126,20 @@ export function validateContent(
       errors.push(`Тренировка ${i}: нет упражнений`);
       return;
     }
+    if (
+      w.verificationStatus !== undefined &&
+      !["sequence-unverified", "sequence-verified"].includes(
+        String(w.verificationStatus),
+      )
+    )
+      errors.push(`Тренировка ${i}: verificationStatus`);
+    if (
+      w.verificationStatus === "sequence-unverified" &&
+      (w.status !== "needs-review" || !nonempty(w.reviewNote))
+    )
+      errors.push(
+        `Тренировка ${i}: неподтверждённая последовательность требует пояснения и проверки`,
+      );
     const occurrences = new Set();
     const orders = new Set();
     w.exercises.forEach((o: unknown) => {
@@ -137,4 +189,8 @@ export function filterExercises(
       (!type || e.exerciseType === type)
     );
   });
+}
+
+export function getExerciseById(id: string): Exercise | undefined {
+  return exercises.find((e) => e.id === id || e.legacyIds?.includes(id));
 }

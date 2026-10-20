@@ -5,6 +5,7 @@ import {
   workoutFixtures,
   filterExercises,
   validateContent,
+  getExerciseById,
 } from "./content";
 import type { Exercise } from "../data/types";
 
@@ -13,7 +14,12 @@ describe("целостность контента", () => {
     expect(
       validateContent(exercises, [...workouts, ...workoutFixtures]),
     ).toEqual([]);
-    expect(workouts).toEqual([]);
+    expect(exercises).toHaveLength(13);
+    expect(workouts).toHaveLength(1);
+    expect(workouts[0].exercises).toHaveLength(25);
+    expect(workouts[0].verificationStatus).toBe("sequence-unverified");
+    expect(exercises.every((e) => e.status === "needs-review")).toBe(true);
+    expect(getExerciseById("ex-db-squat")?.id).toBe("db-squat");
     expect(workoutFixtures[0].status).toBe("needs-review");
   });
   it("сохраняет повторные упражнения с разными id вхождений", () => {
@@ -45,7 +51,10 @@ describe("целостность контента", () => {
   });
   it("требует пояснения для неподтверждённой техники", () => {
     expect(
-      validateContent([{ ...exercises[0], status: "needs-review" }], []),
+      validateContent(
+        [{ ...exercises[0], status: "needs-review", reviewNote: undefined }],
+        [],
+      ),
     ).not.toEqual([]);
   });
   it("отклоняет опасные пути изображений", () => {
@@ -65,9 +74,9 @@ describe("поиск и фильтры", () => {
     "скват",
     "приседания с гантелями",
   ])("находит по запросу %s", (query) => {
-    expect(filterExercises(exercises, query, "", "").map((e) => e.id)).toEqual([
-      "ex-db-squat",
-    ]);
+    expect(
+      filterExercises([exercises[0]], query, "", "").map((e) => e.id),
+    ).toEqual(["db-squat"]);
   });
   it("нормализует е и ё", () => {
     const item = { ...exercises[0], aliases: ["подъём"] };
@@ -81,10 +90,10 @@ describe("поиск и фильтры", () => {
       exerciseType: "Мобильность",
     };
     expect(
-      filterExercises([...exercises, other], "squat", "Ноги", "Силовые"),
-    ).toEqual(exercises);
-    expect(filterExercises(exercises, "", "Спина", "")).toEqual([]);
-    expect(filterExercises(exercises, "", "Ноги", "Разминка")).toEqual([]);
+      filterExercises([exercises[0], other], "squat", "Ноги", "Силовые"),
+    ).toEqual([exercises[0]]);
+    expect(filterExercises([exercises[0]], "", "Спина", "")).toEqual([]);
+    expect(filterExercises([exercises[0]], "", "Ноги", "Разминка")).toEqual([]);
     expect(filterExercises(exercises, "неизвестное", "", "")).toEqual([]);
   });
 });

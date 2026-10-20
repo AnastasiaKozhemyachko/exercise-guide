@@ -38,7 +38,9 @@ function ExerciseCard({ exercise }: { exercise: Exercise }) {
           ))}
         </div>
         {exercise.status === "needs-review" && (
-          <span className="review-label">Техника требует проверки</span>
+          <span className="review-label">
+            Черновик · техника требует проверки
+          </span>
         )}
       </div>
     </Link>

@@ -9,8 +9,10 @@ export function ImagePlaceholder({ compact = false }: { compact?: boolean }) {
         <ImageOff size={compact ? 30 : 38} strokeWidth={1.2} />
       </div>
       <span className="eyebrow">КАРТОЧКА ТЕХНИКИ · V1</span>
-      <strong>Иллюстрация ожидает загрузки</strong>
-      <p>Утверждённый оригинал из чата ещё не добавлен в файлы проекта.</p>
+      <strong>Иллюстрация недоступна</strong>
+      <p>
+        Не удалось загрузить изображение карточки. Попробуй обновить страницу.
+      </p>
     </div>
   );
 }
@@ -58,7 +60,9 @@ export function InstructionImage({ exercise }: { exercise: Exercise }) {
       <div className="instruction-toolbar">
         <span>
           <span className="tiny-dot" />
-          КАРТОЧКА ТЕХНИКИ V1
+          {exercise.status === "needs-review"
+            ? "ЧЕРНОВИК КАРТОЧКИ V1"
+            : "КАРТОЧКА ТЕХНИКИ V1"}
         </span>
         <button
           ref={trigger}
@@ -90,7 +94,7 @@ export function InstructionImage({ exercise }: { exercise: Exercise }) {
       </div>
       <p className="image-caption">
         {failed
-          ? "Исходное изображение не загружено. Оно не заменено сгенерированной иллюстрацией."
+          ? "Карточка не загрузилась. Попробуй обновить страницу."
           : "Исходная карточка · без обрезки и изменения пропорций. Нажмите, чтобы рассмотреть детали."}
       </p>
       {open && (
@@ -107,7 +111,10 @@ export function InstructionImage({ exercise }: { exercise: Exercise }) {
           }}
         >
           <div className="zoom-toolbar">
-            <strong>{exercise.nameRu}</strong>
+            <strong>
+              {exercise.status === "needs-review" ? "Черновик · " : ""}
+              {exercise.nameRu}
+            </strong>
             <div>
               <button
                 aria-label="Уменьшить"

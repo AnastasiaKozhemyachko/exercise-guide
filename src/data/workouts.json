@@ -1,1 +1,140 @@
-[]
+[
+  {
+    "id": "hasfit-legs-glutes-dumbbells",
+    "slug": "hasfit-legs-glutes-dumbbells",
+    "title": "Ноги и ягодицы с гантелями · HASfit",
+    "source": "HASfit",
+    "description": "Тренировка HASfit с разминкой, силовым блоком и растяжкой. Порядок повторений предварительный и требует сверки с полным видео.",
+    "exercises": [
+      {
+        "id": "occ-01",
+        "exerciseId": "downward-dog-multi-planar-lunge",
+        "order": 1
+      },
+      {
+        "id": "occ-02",
+        "exerciseId": "overhead-squat",
+        "order": 2
+      },
+      {
+        "id": "occ-03",
+        "exerciseId": "db-squat",
+        "order": 3
+      },
+      {
+        "id": "occ-04",
+        "exerciseId": "one-leg-hip-up",
+        "order": 4
+      },
+      {
+        "id": "occ-05",
+        "exerciseId": "db-squat",
+        "order": 5
+      },
+      {
+        "id": "occ-06",
+        "exerciseId": "one-leg-hip-up",
+        "order": 6
+      },
+      {
+        "id": "occ-07",
+        "exerciseId": "db-squat",
+        "order": 7
+      },
+      {
+        "id": "occ-08",
+        "exerciseId": "one-leg-hip-up",
+        "order": 8
+      },
+      {
+        "id": "occ-09",
+        "exerciseId": "pendulum-march",
+        "order": 9
+      },
+      {
+        "id": "occ-10",
+        "exerciseId": "one-leg-calf-raise",
+        "order": 10
+      },
+      {
+        "id": "occ-11",
+        "exerciseId": "pendulum-march",
+        "order": 11
+      },
+      {
+        "id": "occ-12",
+        "exerciseId": "one-leg-calf-raise",
+        "order": 12
+      },
+      {
+        "id": "occ-13",
+        "exerciseId": "db-short-step-lunge",
+        "order": 13
+      },
+      {
+        "id": "occ-14",
+        "exerciseId": "one-leg-balance",
+        "order": 14
+      },
+      {
+        "id": "occ-15",
+        "exerciseId": "db-short-step-lunge",
+        "order": 15
+      },
+      {
+        "id": "occ-16",
+        "exerciseId": "one-leg-balance",
+        "order": 16
+      },
+      {
+        "id": "occ-17",
+        "exerciseId": "curtsy-lunge",
+        "order": 17
+      },
+      {
+        "id": "occ-18",
+        "exerciseId": "fire-hydrant-pulse",
+        "order": 18
+      },
+      {
+        "id": "occ-19",
+        "exerciseId": "curtsy-lunge",
+        "order": 19
+      },
+      {
+        "id": "occ-20",
+        "exerciseId": "fire-hydrant-pulse",
+        "order": 20
+      },
+      {
+        "id": "occ-21",
+        "exerciseId": "page-turner",
+        "order": 21
+      },
+      {
+        "id": "occ-22",
+        "exerciseId": "side-lying-quad-stretch",
+        "order": 22
+      },
+      {
+        "id": "occ-23",
+        "exerciseId": "page-turner",
+        "order": 23
+      },
+      {
+        "id": "occ-24",
+        "exerciseId": "side-lying-quad-stretch",
+        "order": 24
+      },
+      {
+        "id": "occ-25",
+        "exerciseId": "v-sit-reach",
+        "order": 25
+      }
+    ],
+    "verificationStatus": "sequence-unverified",
+    "originalTitle": "30 Min Legs and Glutes Workout with Dumbbells at Home",
+    "status": "needs-review",
+    "reviewNote": "Предварительный порядок из предоставленного пакета: 25 вхождений. Полный MP4 не был доступен для проверки; состав и последовательность не подтверждены по видео."
+  }
+]

@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Dumbbell, Leaf } from "lucide-react";
 import { InstructionImage } from "../components/InstructionImage";
-import { exercises, workouts } from "../lib/content";
+import { exercises, workouts, getExerciseById } from "../lib/content";
 import { useTitle } from "../lib/useTitle";
 import { NotFound } from "./NotFound";
 export function ExerciseDetail() {
@@ -10,7 +10,7 @@ export function ExerciseDetail() {
   useTitle(exercise?.nameRu ?? "Упражнение не найдено");
   if (!exercise) return <NotFound />;
   const related = workouts.filter((w) =>
-    w.exercises.some((o) => o.exerciseId === exercise.id),
+    w.exercises.some((o) => getExerciseById(o.exerciseId)?.id === exercise.id),
   );
   return (
     <div className="page detail-page">
@@ -29,11 +29,35 @@ export function ExerciseDetail() {
         </span>
       </div>
       {exercise.status === "needs-review" ? (
-        <div className="review-notice">
-          <strong>Техника требует проверки</strong>
-          <p>{exercise.reviewNote}</p>
-          <p>Инструкция появится после подтверждения упражнения.</p>
-        </div>
+        <>
+          <div className="review-notice" role="note">
+            <strong>Черновик · техника требует проверки</strong>
+            <p>{exercise.reviewNote}</p>
+            {exercise.imageOrigin === "ai-generated-illustration" && (
+              <p>
+                AI-иллюстрация, не кадр из видео. Дизайн не означает
+                подтверждения техники.
+              </p>
+            )}
+            {exercise.reviewIssues?.length ? (
+              <ul>
+                {exercise.reviewIssues.map((issue) => (
+                  <li key={issue}>{issue}</li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+          {exercise.reviewPreview ? (
+            <details className="draft-preview" key={exercise.id}>
+              <summary>Посмотреть черновик карточки</summary>
+              <InstructionImage exercise={exercise} />
+            </details>
+          ) : (
+            <p className="image-caption">
+              Инструкция появится после подтверждения упражнения.
+            </p>
+          )}
+        </>
       ) : (
         <InstructionImage key={exercise.id} exercise={exercise} />
       )}

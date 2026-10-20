@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
-import { exercises, workouts, workoutFixtures } from "../lib/content";
+import { getExerciseById, workouts, workoutFixtures } from "../lib/content";
 import { useTitle } from "../lib/useTitle";
 import { NotFound } from "./NotFound";
 export function WorkoutDetail({ fixture = false }: { fixture?: boolean }) {
@@ -33,7 +33,11 @@ export function WorkoutDetail({ fixture = false }: { fixture?: boolean }) {
       <p className="page-intro">{workout.description}</p>
       {workout.status === "needs-review" && !fixture && (
         <div className="review-notice">
-          Подборка требует проверки. Не используй её как готовую программу.
+          <strong>Последовательность не проверена по видео</strong>
+          <p>
+            {workout.reviewNote ||
+              "Подборка требует проверки. Не используй её как готовую программу."}
+          </p>
         </div>
       )}
       <section className="sequence-section">
@@ -43,7 +47,7 @@ export function WorkoutDetail({ fixture = false }: { fixture?: boolean }) {
         </div>
         <ol className="sequence-list">
           {sequence.map((o) => {
-            const e = exercises.find((e) => e.id === o.exerciseId)!;
+            const e = getExerciseById(o.exerciseId)!;
             return (
               <li key={o.id}>
                 <Link to={`/exercises/${e.slug}`}>

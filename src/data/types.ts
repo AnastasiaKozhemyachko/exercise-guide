@@ -29,6 +29,14 @@ export interface Exercise {
   imageAlt: string;
   status: "verified" | "needs-review";
   reviewNote?: string;
+  reviewIssues?: string[];
+  reviewPreview?: boolean;
+  imageOrigin?: "ai-generated-illustration";
+  sourceStatus?:
+    | "needs-technique-and-text-review"
+    | "approved-design-reference";
+  contentSource?: string;
+  legacyIds?: string[];
 }
 export interface WorkoutExercise {
   id: string;
@@ -45,4 +53,7 @@ export interface Workout {
   coverImage?: string;
   status: "verified" | "needs-review";
   exercises: WorkoutExercise[];
+  originalTitle?: string;
+  reviewNote?: string;
+  verificationStatus?: "sequence-unverified" | "sequence-verified";
 }

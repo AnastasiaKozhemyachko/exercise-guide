@@ -1,0 +1,222 @@
+[
+  {
+    "id": "downward-dog-multi-planar-lunge",
+    "slug": "downward-dog-multi-planar-lunge",
+    "nameRu": "Собака мордой вниз → разнонаправленный выпад",
+    "nameEn": "Downward Dog to Multi-Planar Lunge",
+    "aliases": [],
+    "muscleGroups": [
+      "Ноги",
+      "Ягодицы",
+      "Всё тело"
+    ],
+    "exerciseType": "Разминка",
+    "instructionImage": "cards/05_downward_dog_to_multi_planar_lunge.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-technique-and-text-review",
+    "thumbnail": "cards/05_downward_dog_to_multi_planar_lunge.png",
+    "reviewNotes": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции."
+  },
+  {
+    "id": "overhead-squat",
+    "slug": "overhead-squat",
+    "nameRu": "Присед с поднятыми руками",
+    "nameEn": "Overhead Squat",
+    "aliases": [],
+    "muscleGroups": [
+      "Ноги",
+      "Ягодицы",
+      "Плечи"
+    ],
+    "exerciseType": "Разминка",
+    "instructionImage": "cards/06_overhead_squat.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-technique-and-text-review",
+    "thumbnail": "cards/06_overhead_squat.png",
+    "reviewNotes": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции."
+  },
+  {
+    "id": "page-turner",
+    "slug": "page-turner",
+    "nameRu": "Поворот грудного отдела лёжа",
+    "nameEn": "Page Turner",
+    "aliases": [],
+    "muscleGroups": [
+      "Спина",
+      "Грудь",
+      "Плечи"
+    ],
+    "exerciseType": "Растяжка",
+    "instructionImage": "cards/11_page_turner.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-technique-and-text-review",
+    "thumbnail": "cards/11_page_turner.png",
+    "reviewNotes": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции."
+  },
+  {
+    "id": "side-lying-quad-stretch",
+    "slug": "side-lying-quad-stretch",
+    "nameRu": "Растяжка квадрицепса лёжа на боку",
+    "nameEn": "Side Lying Quad Stretch",
+    "aliases": [],
+    "muscleGroups": [
+      "Ноги"
+    ],
+    "exerciseType": "Растяжка",
+    "instructionImage": "cards/12_side_lying_quad_stretch.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-technique-and-text-review",
+    "thumbnail": "cards/12_side_lying_quad_stretch.png",
+    "reviewNotes": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции."
+  },
+  {
+    "id": "v-sit-reach",
+    "slug": "v-sit-reach",
+    "nameRu": "Наклон к ногам сидя",
+    "nameEn": "V-Sit Reach",
+    "aliases": [],
+    "muscleGroups": [
+      "Ноги",
+      "Спина"
+    ],
+    "exerciseType": "Растяжка",
+    "instructionImage": "cards/13_v_sit_reach.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-technique-and-text-review",
+    "thumbnail": "cards/13_v_sit_reach.png",
+    "reviewNotes": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции. В сгенерированной карточке согнутые колени обозначены ошибкой, хотя это может быть корректной адаптацией; исправить перед публикацией."
+  },
+  {
+    "id": "db-squat",
+    "slug": "db-squat",
+    "nameRu": "Присед с гантелями",
+    "nameEn": "DB Squat",
+    "aliases": [],
+    "muscleGroups": [
+      "Ноги",
+      "Ягодицы"
+    ],
+    "exerciseType": "Силовые",
+    "instructionImage": "cards/01_db_squat.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "approved-design-reference",
+    "thumbnail": "cards/01_db_squat.png",
+    "reviewNotes": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции."
+  },
+  {
+    "id": "one-leg-hip-up",
+    "slug": "one-leg-hip-up",
+    "nameRu": "Ягодичный мостик на одной ноге",
+    "nameEn": "One Leg Hip Up",
+    "aliases": [],
+    "muscleGroups": [
+      "Ягодицы",
+      "Ноги"
+    ],
+    "exerciseType": "Силовые",
+    "instructionImage": "cards/02_one_leg_hip_up.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-technique-and-text-review",
+    "thumbnail": "cards/02_one_leg_hip_up.png",
+    "reviewNotes": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции."
+  },
+  {
+    "id": "pendulum-march",
+    "slug": "pendulum-march",
+    "nameRu": "Пендулум-марш",
+    "nameEn": "Pendulum March",
+    "aliases": [],
+    "muscleGroups": [
+      "Ноги",
+      "Ягодицы"
+    ],
+    "exerciseType": "Силовые",
+    "instructionImage": "cards/03_pendulum_march.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-technique-and-text-review",
+    "thumbnail": "cards/03_pendulum_march.png",
+    "reviewNotes": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции."
+  },
+  {
+    "id": "one-leg-calf-raise",
+    "slug": "one-leg-calf-raise",
+    "nameRu": "Подъём на носок на одной ноге",
+    "nameEn": "One Leg Calf Raise",
+    "aliases": [],
+    "muscleGroups": [
+      "Ноги"
+    ],
+    "exerciseType": "Силовые",
+    "instructionImage": "cards/07_one_leg_calf_raise.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-technique-and-text-review",
+    "thumbnail": "cards/07_one_leg_calf_raise.png",
+    "reviewNotes": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции."
+  },
+  {
+    "id": "db-short-step-lunge",
+    "slug": "db-short-step-lunge",
+    "nameRu": "Короткий выпад с гантелями",
+    "nameEn": "DB Short Step Lunge",
+    "aliases": [],
+    "muscleGroups": [
+      "Ноги",
+      "Ягодицы"
+    ],
+    "exerciseType": "Силовые",
+    "instructionImage": "cards/08_db_short_step_lunge.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-technique-and-text-review",
+    "thumbnail": "cards/08_db_short_step_lunge.png",
+    "reviewNotes": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции."
+  },
+  {
+    "id": "one-leg-balance",
+    "slug": "one-leg-balance",
+    "nameRu": "Баланс на одной ноге",
+    "nameEn": "One Leg Balance",
+    "aliases": [],
+    "muscleGroups": [
+      "Ноги"
+    ],
+    "exerciseType": "Силовые",
+    "instructionImage": "cards/09_one_leg_balance.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-technique-and-text-review",
+    "thumbnail": "cards/09_one_leg_balance.png",
+    "reviewNotes": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции."
+  },
+  {
+    "id": "curtsy-lunge",
+    "slug": "curtsy-lunge",
+    "nameRu": "Реверанс-выпад",
+    "nameEn": "Curtsy Lunge",
+    "aliases": [],
+    "muscleGroups": [
+      "Ноги",
+      "Ягодицы"
+    ],
+    "exerciseType": "Силовые",
+    "instructionImage": "cards/10_curtsy_lunge.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-technique-and-text-review",
+    "thumbnail": "cards/10_curtsy_lunge.png",
+    "reviewNotes": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции."
+  },
+  {
+    "id": "fire-hydrant-pulse",
+    "slug": "fire-hydrant-pulse",
+    "nameRu": "Пожарный гидрант с пульсацией",
+    "nameEn": "Fire Hydrant + Pulse",
+    "aliases": [],
+    "muscleGroups": [
+      "Ягодицы"
+    ],
+    "exerciseType": "Силовые",
+    "instructionImage": "cards/04_fire_hydrant_pulse.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-technique-and-text-review",
+    "thumbnail": "cards/04_fire_hydrant_pulse.png",
+    "reviewNotes": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции."
+  }
+]

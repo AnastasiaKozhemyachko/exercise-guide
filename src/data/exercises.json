@@ -1,15 +1,276 @@
 [
   {
-    "id": "ex-db-squat",
+    "id": "db-squat",
     "slug": "db-squat",
     "nameRu": "Присед с гантелями",
     "nameEn": "DB Squat",
     "aliases": ["приседания с гантелями", "dumbbell squat", "присед", "скват"],
     "muscleGroups": ["Ноги", "Ягодицы", "Пресс"],
     "exerciseType": "Силовые",
-    "thumbnail": "/images/russian_dumbbell_squat_technique_guide.png",
-    "instructionImage": "/images/russian_dumbbell_squat_technique_guide.png",
-    "imageAlt": "Карточка техники приседа с гантелями: исходное положение и присед, линии положения тела, дыхание, частые ошибки и облегчённые варианты.",
-    "status": "verified"
+    "instructionImage": "/images/hasfit/01_db_squat.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-review",
+    "thumbnail": "/images/hasfit/01_db_squat.png",
+    "imageAlt": "Черновик AI-иллюстрации «Присед с гантелями» (DB Squat): положения тела, выноски и раздел ошибок; требует проверки.",
+    "sourceStatus": "approved-design-reference",
+    "reviewNote": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции.",
+    "reviewIssues": [
+      "Утверждён только визуальный дизайн. Ощущение нагрузки в квадрицепсе около колена не доказывает ошибку; боль требует остановки и оценки нагрузки."
+    ],
+    "reviewPreview": true,
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip",
+    "legacyIds": ["ex-db-squat"]
+  },
+  {
+    "id": "downward-dog-multi-planar-lunge",
+    "slug": "downward-dog-multi-planar-lunge",
+    "nameRu": "Собака мордой вниз → разнонаправленный выпад",
+    "nameEn": "Downward Dog to Multi-Planar Lunge",
+    "aliases": [],
+    "muscleGroups": ["Ноги", "Ягодицы", "Всё тело"],
+    "exerciseType": "Разминка",
+    "instructionImage": "/images/hasfit/05_downward_dog_to_multi_planar_lunge.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-review",
+    "thumbnail": "/images/hasfit/05_downward_dog_to_multi_planar_lunge.png",
+    "imageAlt": "Черновик AI-иллюстрации «Собака мордой вниз → разнонаправленный выпад» (Downward Dog to Multi-Planar Lunge): положения тела, выноски и раздел ошибок; требует проверки.",
+    "sourceStatus": "needs-technique-and-text-review",
+    "reviewNote": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции.",
+    "reviewIssues": [
+      "В положении собаки кисти не обязаны находиться вертикально под плечами; подпись требует уточнения. Приподнятая пятка и согнутые колени могут быть допустимой адаптацией."
+    ],
+    "reviewPreview": true,
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+  },
+  {
+    "id": "overhead-squat",
+    "slug": "overhead-squat",
+    "nameRu": "Присед с поднятыми руками",
+    "nameEn": "Overhead Squat",
+    "aliases": [],
+    "muscleGroups": ["Ноги", "Ягодицы", "Плечи"],
+    "exerciseType": "Разминка",
+    "instructionImage": "/images/hasfit/06_overhead_squat.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-review",
+    "thumbnail": "/images/hasfit/06_overhead_squat.png",
+    "imageAlt": "Черновик AI-иллюстрации «Присед с поднятыми руками» (Overhead Squat): положения тела, выноски и раздел ошибок; требует проверки.",
+    "sourceStatus": "needs-technique-and-text-review",
+    "reviewNote": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции.",
+    "reviewIssues": [
+      "Наклон рук и глубина приседа зависят от подвижности. Не форсируй положение рук над головой ценой боли или прогиба поясницы."
+    ],
+    "reviewPreview": true,
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+  },
+  {
+    "id": "page-turner",
+    "slug": "page-turner",
+    "nameRu": "Поворот грудного отдела лёжа",
+    "nameEn": "Page Turner",
+    "aliases": [],
+    "muscleGroups": ["Спина", "Грудь", "Плечи"],
+    "exerciseType": "Растяжка",
+    "instructionImage": "/images/hasfit/11_page_turner.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-review",
+    "thumbnail": "/images/hasfit/11_page_turner.png",
+    "imageAlt": "Черновик AI-иллюстрации «Поворот грудного отдела лёжа» (Page Turner): положения тела, выноски и раздел ошибок; требует проверки.",
+    "sourceStatus": "needs-technique-and-text-review",
+    "reviewNote": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции.",
+    "reviewIssues": [
+      "Рисунок и подпись «взгляд следует за рукой вверх» не показывают ясно траекторию верхней руки. Отрыв плеча от пола не всегда ошибка при грудном повороте; не прижимай его силой ради картинки."
+    ],
+    "reviewPreview": true,
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+  },
+  {
+    "id": "side-lying-quad-stretch",
+    "slug": "side-lying-quad-stretch",
+    "nameRu": "Растяжка квадрицепса лёжа на боку",
+    "nameEn": "Side Lying Quad Stretch",
+    "aliases": [],
+    "muscleGroups": ["Ноги"],
+    "exerciseType": "Растяжка",
+    "instructionImage": "/images/hasfit/12_side_lying_quad_stretch.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-review",
+    "thumbnail": "/images/hasfit/12_side_lying_quad_stretch.png",
+    "imageAlt": "Черновик AI-иллюстрации «Растяжка квадрицепса лёжа на боку» (Side Lying Quad Stretch): положения тела, выноски и раздел ошибок; требует проверки.",
+    "sourceStatus": "needs-technique-and-text-review",
+    "reviewNote": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции.",
+    "reviewIssues": [
+      "Не тяни пятку к ягодице сильнее ради обязательной глубины. Положение колена и сила натяжения должны оставаться комфортными."
+    ],
+    "reviewPreview": true,
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+  },
+  {
+    "id": "v-sit-reach",
+    "slug": "v-sit-reach",
+    "nameRu": "Наклон к ногам сидя",
+    "nameEn": "V-Sit Reach",
+    "aliases": [],
+    "muscleGroups": ["Ноги", "Спина"],
+    "exerciseType": "Растяжка",
+    "instructionImage": "/images/hasfit/13_v_sit_reach.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-review",
+    "thumbnail": "/images/hasfit/13_v_sit_reach.png",
+    "imageAlt": "Черновик AI-иллюстрации «Наклон к ногам сидя» (V-Sit Reach): положения тела, выноски и раздел ошибок; требует проверки.",
+    "sourceStatus": "needs-technique-and-text-review",
+    "reviewNote": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции. В сгенерированной карточке согнутые колени обозначены ошибкой, хотя это может быть корректной адаптацией; исправить перед публикацией.",
+    "reviewIssues": [
+      "В разделе ошибок согнутые колени ошибочно названы неправильными: лёгкое сгибание может быть допустимым облегчением. На иллюстрации ноги вместе; название V-Sit требует сверки с видео. Не следуй требованию обязательно выпрямлять колени или дотягиваться до стоп."
+    ],
+    "reviewPreview": true,
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+  },
+  {
+    "id": "one-leg-hip-up",
+    "slug": "one-leg-hip-up",
+    "nameRu": "Ягодичный мостик на одной ноге",
+    "nameEn": "One Leg Hip Up",
+    "aliases": [],
+    "muscleGroups": ["Ягодицы", "Ноги"],
+    "exerciseType": "Силовые",
+    "instructionImage": "/images/hasfit/03_pendulum_march.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-review",
+    "thumbnail": "/images/hasfit/03_pendulum_march.png",
+    "imageAlt": "Черновик AI-иллюстрации «Ягодичный мостик на одной ноге» (One Leg Hip Up): положения тела, выноски и раздел ошибок; требует проверки.",
+    "sourceStatus": "needs-technique-and-text-review",
+    "reviewNote": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции.",
+    "reviewIssues": [
+      "Для опоры сохраняй контакт стопы с полом, не переноси весь вес исключительно на пятку. Высоту таза выбирай без избыточного прогиба поясницы."
+    ],
+    "reviewPreview": true,
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+  },
+  {
+    "id": "pendulum-march",
+    "slug": "pendulum-march",
+    "nameRu": "Пендулум-марш",
+    "nameEn": "Pendulum March",
+    "aliases": [],
+    "muscleGroups": ["Ноги", "Ягодицы"],
+    "exerciseType": "Силовые",
+    "instructionImage": "/images/hasfit/02_one_leg_hip_up.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-review",
+    "thumbnail": "/images/hasfit/02_one_leg_hip_up.png",
+    "imageAlt": "Черновик AI-иллюстрации «Пендулум-марш» (Pendulum March): положения тела, выноски и раздел ошибок; требует проверки.",
+    "sourceStatus": "needs-technique-and-text-review",
+    "reviewNote": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции.",
+    "reviewIssues": [
+      "Схема показывает наклон на одной ноге с подъёмом колена, но точный вариант Pendulum March требуется сверить с видео."
+    ],
+    "reviewPreview": true,
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+  },
+  {
+    "id": "one-leg-calf-raise",
+    "slug": "one-leg-calf-raise",
+    "nameRu": "Подъём на носок на одной ноге",
+    "nameEn": "One Leg Calf Raise",
+    "aliases": [],
+    "muscleGroups": ["Ноги"],
+    "exerciseType": "Силовые",
+    "instructionImage": "/images/hasfit/07_one_leg_calf_raise.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-review",
+    "thumbnail": "/images/hasfit/07_one_leg_calf_raise.png",
+    "imageAlt": "Черновик AI-иллюстрации «Подъём на носок на одной ноге» (One Leg Calf Raise): положения тела, выноски и раздел ошибок; требует проверки.",
+    "sourceStatus": "needs-technique-and-text-review",
+    "reviewNote": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции.",
+    "reviewIssues": [
+      "Высота подъёма и опускания пятки зависит от доступной безболезненной амплитуды. «Максимально высоко» и «недостаточно низко» не универсальные ориентиры."
+    ],
+    "reviewPreview": true,
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+  },
+  {
+    "id": "db-short-step-lunge",
+    "slug": "db-short-step-lunge",
+    "nameRu": "Короткий выпад с гантелями",
+    "nameEn": "DB Short Step Lunge",
+    "aliases": [],
+    "muscleGroups": ["Ноги", "Ягодицы"],
+    "exerciseType": "Силовые",
+    "instructionImage": "/images/hasfit/08_db_short_step_lunge.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-review",
+    "thumbnail": "/images/hasfit/08_db_short_step_lunge.png",
+    "imageAlt": "Черновик AI-иллюстрации «Короткий выпад с гантелями» (DB Short Step Lunge): положения тела, выноски и раздел ошибок; требует проверки.",
+    "sourceStatus": "needs-technique-and-text-review",
+    "reviewNote": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции.",
+    "reviewIssues": [
+      "Наклон корпуса и длина шага зависят от варианта выпада. Не сокращай шаг только из-за ощущения нагрузки в колене; при боли остановись и пересмотри нагрузку и технику."
+    ],
+    "reviewPreview": true,
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+  },
+  {
+    "id": "one-leg-balance",
+    "slug": "one-leg-balance",
+    "nameRu": "Баланс на одной ноге",
+    "nameEn": "One Leg Balance",
+    "aliases": [],
+    "muscleGroups": ["Ноги"],
+    "exerciseType": "Силовые",
+    "instructionImage": "/images/hasfit/09_one_leg_balance.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-review",
+    "thumbnail": "/images/hasfit/09_one_leg_balance.png",
+    "imageAlt": "Черновик AI-иллюстрации «Баланс на одной ноге» (One Leg Balance): положения тела, выноски и раздел ошибок; требует проверки.",
+    "sourceStatus": "needs-technique-and-text-review",
+    "reviewNote": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции.",
+    "reviewIssues": [
+      "Колено ниже уровня таза само по себе не является ошибкой: допустимая высота зависит от устойчивости и подвижности."
+    ],
+    "reviewPreview": true,
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+  },
+  {
+    "id": "curtsy-lunge",
+    "slug": "curtsy-lunge",
+    "nameRu": "Реверанс-выпад",
+    "nameEn": "Curtsy Lunge",
+    "aliases": [],
+    "muscleGroups": ["Ноги", "Ягодицы"],
+    "exerciseType": "Силовые",
+    "instructionImage": "/images/hasfit/10_curtsy_lunge.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-review",
+    "thumbnail": "/images/hasfit/10_curtsy_lunge.png",
+    "imageAlt": "Черновик AI-иллюстрации «Реверанс-выпад» (Curtsy Lunge): положения тела, выноски и раздел ошибок; требует проверки.",
+    "sourceStatus": "needs-technique-and-text-review",
+    "reviewNote": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции.",
+    "reviewIssues": [
+      "Небольшой наклон корпуса допустим в зависимости от варианта. Не задавай обязательную глубину или величину перекрёстного шага по рисунку."
+    ],
+    "reviewPreview": true,
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+  },
+  {
+    "id": "fire-hydrant-pulse",
+    "slug": "fire-hydrant-pulse",
+    "nameRu": "Пожарный гидрант с пульсацией",
+    "nameEn": "Fire Hydrant + Pulse",
+    "aliases": [],
+    "muscleGroups": ["Ягодицы"],
+    "exerciseType": "Силовые",
+    "instructionImage": "/images/hasfit/04_fire_hydrant_pulse.png",
+    "imageOrigin": "ai-generated-illustration",
+    "status": "needs-review",
+    "thumbnail": "/images/hasfit/04_fire_hydrant_pulse.png",
+    "imageAlt": "Черновик AI-иллюстрации «Пожарный гидрант с пульсацией» (Fire Hydrant + Pulse): положения тела, выноски и раздел ошибок; требует проверки.",
+    "sourceStatus": "needs-technique-and-text-review",
+    "reviewNote": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции.",
+    "reviewIssues": [
+      "Выноски «кисти под плечами» и «колени под тазом» указывают не на соответствующие суставы. Иллюстрация не задаёт обязательную высоту подъёма бедра."
+    ],
+    "reviewPreview": true,
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
   }
 ]
