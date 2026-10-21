@@ -10,7 +10,9 @@
     "test": "vitest run",
     "validate:content": "vitest run src/lib/content.test.ts",
     "test:e2e": "playwright test",
-    "validate:assets": "node scripts/check-assets.mjs"
+    "validate:assets": "node scripts/check-assets.mjs",
+    "build:pages": "tsc -b && vite build --mode github-pages",
+    "deploy:pages": "node scripts/deploy-pages.mjs"
   },
   "dependencies": {
     "react": "^19.2.0",

@@ -1,3 +1,4 @@
+import { assetUrl } from "../lib/assetUrl";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ChevronRight, Dumbbell } from "lucide-react";
@@ -18,7 +19,7 @@ function WorkoutCard({
     >
       <div className="workout-cover">
         {workout.coverImage ? (
-          <img src={workout.coverImage} alt="" loading="lazy" />
+          <img src={assetUrl(workout.coverImage)} alt="" loading="lazy" />
         ) : (
           <div className="workout-cover-pattern">
             <Dumbbell size={52} strokeWidth={1} />

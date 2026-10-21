@@ -1,3 +1,4 @@
+import { assetUrl } from "../lib/assetUrl";
 import { useEffect, useRef, useState } from "react";
 import { ImageOff, Maximize2, Minus, Plus, X } from "lucide-react";
 import type { Exercise } from "../data/types";
@@ -23,7 +24,7 @@ export function Thumbnail({ exercise }: { exercise: Exercise }) {
   ) : (
     <img
       className="exercise-thumbnail"
-      src={exercise.thumbnail}
+      src={assetUrl(exercise.thumbnail)}
       alt={exercise.imageAlt}
       loading="lazy"
       onError={() => setFailed(true)}
@@ -84,7 +85,7 @@ export function InstructionImage({ exercise }: { exercise: Exercise }) {
             onClick={() => setOpen(true)}
           >
             <img
-              src={exercise.instructionImage}
+              src={assetUrl(exercise.instructionImage)}
               alt={exercise.imageAlt}
               onLoad={() => setReady(true)}
               onError={() => setFailed(true)}
@@ -142,7 +143,7 @@ export function InstructionImage({ exercise }: { exercise: Exercise }) {
             aria-label="Область прокрутки изображения"
           >
             <img
-              src={exercise.instructionImage}
+              src={assetUrl(exercise.instructionImage)}
               alt={exercise.imageAlt}
               style={{ width: `${zoom}%` }}
             />
