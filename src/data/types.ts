@@ -54,6 +54,10 @@ export interface Workout {
   status: "verified" | "needs-review";
   exercises: WorkoutExercise[];
   originalTitle?: string;
+  nameEn?: string;
+  aliases?: string[];
+  summary?: string;
+  coverCredit?: string;
   reviewNote?: string;
   verificationStatus?: "sequence-unverified" | "sequence-verified";
 }

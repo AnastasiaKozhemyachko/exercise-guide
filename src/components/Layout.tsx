@@ -1,4 +1,10 @@
-import { ArrowUpRight, BookOpen, Flower2, Layers3 } from "lucide-react";
+import {
+  ArrowUpRight,
+  BookOpen,
+  Flower2,
+  Layers3,
+  ClipboardCheck,
+} from "lucide-react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { useEffect, useRef } from "react";
 export function Layout() {
@@ -13,7 +19,14 @@ export function Layout() {
   }, [pathname]);
   return (
     <>
-      <a className="skip-link" href="#main">
+      <a
+        className="skip-link"
+        href="#main"
+        onClick={(e) => {
+          e.preventDefault();
+          main.current?.focus();
+        }}
+      >
         Перейти к содержимому
       </a>
       <header className="site-header">
@@ -30,6 +43,9 @@ export function Layout() {
             </NavLink>
             <NavLink to="/workouts">
               <Layers3 size={17} /> Тренировки
+            </NavLink>
+            <NavLink to="/review" aria-label="Проверка техники">
+              <ClipboardCheck size={17} /> Проверка
             </NavLink>
           </nav>
           <span className="header-note">

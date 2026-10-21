@@ -1,58 +1,31 @@
+import { Link, useSearchParams } from "react-router-dom";
+import { ArrowRight, Search, X } from "lucide-react";
 import { assetUrl } from "../lib/assetUrl";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { ArrowRight, ChevronRight, Dumbbell } from "lucide-react";
-import { workouts, workoutFixtures } from "../lib/content";
-import type { Workout } from "../data/types";
+import { workouts } from "../lib/content";
+import {
+  searchWorkouts,
+  workoutEnglish,
+  sortOptions,
+  type NameLanguage,
+} from "../lib/catalog";
+import { Select } from "../components/Select";
 import { useTitle } from "../lib/useTitle";
-function WorkoutCard({
-  workout,
-  fixture = false,
-}: {
-  workout: Workout;
-  fixture?: boolean;
-}) {
-  return (
-    <Link
-      className="workout-card"
-      to={`${fixture ? "/examples/workouts" : "/workouts"}/${workout.slug}`}
-    >
-      <div className="workout-cover">
-        {workout.coverImage ? (
-          <img src={assetUrl(workout.coverImage)} alt="" loading="lazy" />
-        ) : (
-          <div className="workout-cover-pattern">
-            <Dumbbell size={52} strokeWidth={1} />
-          </div>
-        )}
-        <span className="image-tag">
-          {fixture ? "ПРИМЕР · НЕ ТРЕНИРОВКА" : "ПОДБОРКА УПРАЖНЕНИЙ"}
-        </span>
-      </div>
-      <div className="card-copy">
-        <span className="eyebrow">
-          {fixture
-            ? "ДЕМОНСТРАЦИОННЫЕ ДАННЫЕ"
-            : workout.source || "ЛИЧНАЯ ПОДБОРКА"}
-        </span>
-        <h2>{workout.title}</h2>
-        <p>{workout.description}</p>
-        {!fixture && workout.status === "needs-review" && (
-          <span className="review-label">
-            Порядок упражнений требует проверки
-          </span>
-        )}
-        <span className="workout-card-link">
-          {fixture ? "Посмотреть структуру" : "Открыть тренировку"}
-          <ArrowRight size={17} />
-        </span>
-      </div>
-    </Link>
-  );
-}
 export function Workouts() {
   useTitle("Тренировки");
-  const [showExample, setShowExample] = useState(false);
+  const [params, setParams] = useSearchParams();
+  const query = params.get("q") || "";
+  const language: NameLanguage = params.get("sort") === "ru" ? "ru" : "en";
+  const filtered = searchWorkouts(workouts, query, language);
+  function update(key: string, value: string) {
+    setParams(
+      (previous) => {
+        const next = new URLSearchParams(previous);
+        value ? next.set(key, value) : next.delete(key);
+        return next;
+      },
+      { replace: true },
+    );
+  }
   return (
     <div className="page workouts-page">
       <div className="eyebrow">
@@ -61,52 +34,77 @@ export function Workouts() {
       </div>
       <h1>Твои тренировки</h1>
       <p className="page-intro">
-        Знакомые упражнения в нужной последовательности.
-        <br />
-        Открой карточку, когда захочется уточнить технику.
+        Выбери тренировку и листай карточки в её последовательности.
       </p>
-      {workouts.length ? (
+      <div className="filter-panel workout-filters">
+        <div className="search-field">
+          <Search size={20} />
+          <input
+            type="search"
+            aria-label="Поиск тренировок"
+            placeholder="Название на русском или английском"
+            value={query}
+            onChange={(e) => update("q", e.target.value)}
+          />
+          {query && (
+            <button aria-label="Очистить поиск" onClick={() => update("q", "")}>
+              <X size={17} />
+            </button>
+          )}
+        </div>
+        <Select
+          label="Сортировка тренировок"
+          value={language}
+          options={sortOptions}
+          onChange={(value) => update("sort", value)}
+        />
+      </div>
+      <div className="results-bar">
+        <span role="status">Найдено тренировок: {filtered.length}</span>
+        {query && (
+          <button className="text-button" onClick={() => update("q", "")}>
+            Сбросить поиск
+          </button>
+        )}
+      </div>
+      {filtered.length ? (
         <div className="workout-grid">
-          {workouts.map((w) => (
-            <WorkoutCard key={w.id} workout={w} />
+          {filtered.map((w) => (
+            <Link
+              key={w.id}
+              className="workout-card"
+              to={`/workouts/${w.slug}`}
+            >
+              <div className="workout-cover">
+                {w.coverImage && (
+                  <img
+                    src={assetUrl(w.coverImage)}
+                    alt={`Обложка библиотеки: ${w.title}`}
+                    loading="lazy"
+                  />
+                )}
+              </div>
+              <div className="card-copy">
+                <span className="eyebrow">{w.source || "ЛИЧНАЯ ПОДБОРКА"}</span>
+                <h2 className="workout-english">{workoutEnglish(w)}</h2>
+                <p className="workout-russian">{w.title}</p>
+                <p>{w.summary || w.description}</p>
+                <span className="workout-card-link">
+                  Открыть тренировку
+                  <ArrowRight size={17} />
+                </span>
+              </div>
+            </Link>
           ))}
         </div>
       ) : (
-        <div className="workout-empty">
-          <div className="note-icon">
-            <Dumbbell size={28} strokeWidth={1.3} />
-          </div>
-          <h2>Здесь будет твоя первая тренировка</h2>
-          <p>
-            Подтверждённые подборки ещё не добавлены.
-            <br />
-            Порядок упражнений HASfit пока не проверен по видео.
-          </p>
-          <Link className="primary-button" to="/">
-            Изучить упражнения <ArrowRight size={17} />
-          </Link>
-        </div>
-      )}
-      <section className="example-section">
-        <div>
-          <span className="eyebrow">ДЛЯ ЗНАКОМСТВА С ФОРМАТОМ</span>
-          <h2>Как выглядит подборка</h2>
-          <p>Отдельный пример структуры данных. Не программа для выполнения.</p>
-        </div>
-        <button
-          className="secondary-button"
-          aria-expanded={showExample}
-          onClick={() => setShowExample((v) => !v)}
-        >
-          {showExample ? "Скрыть пример" : "Показать пример"}
-          <ChevronRight className={showExample ? "rotate" : ""} size={17} />
-        </button>
-      </section>
-      {showExample && (
-        <div className="workout-grid fixture-grid">
-          {workoutFixtures.map((w) => (
-            <WorkoutCard key={w.id} workout={w} fixture />
-          ))}
+        <div className="empty-state">
+          <Search size={28} />
+          <h2>Тренировки не найдены</h2>
+          <p>Попробуй другое название или очисти поиск.</p>
+          <button className="primary-button" onClick={() => update("q", "")}>
+            Сбросить поиск
+          </button>
         </div>
       )}
     </div>

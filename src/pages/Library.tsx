@@ -1,3 +1,5 @@
+import { Select } from "../components/Select";
+import { sortExercises, sortOptions, type NameLanguage } from "../lib/catalog";
 import { useMemo } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import {
@@ -9,7 +11,6 @@ import {
   Dumbbell,
   Leaf,
   Search,
-  SlidersHorizontal,
   X,
 } from "lucide-react";
 import { Thumbnail } from "../components/InstructionImage";
@@ -37,11 +38,6 @@ function ExerciseCard({ exercise }: { exercise: Exercise }) {
             <span key={m}>{m}</span>
           ))}
         </div>
-        {exercise.status === "needs-review" && (
-          <span className="review-label">
-            Черновик · техника требует проверки
-          </span>
-        )}
       </div>
     </Link>
   );
@@ -52,9 +48,11 @@ export function Library() {
   const query = params.get("q") ?? "";
   const muscle = params.get("muscle") ?? "";
   const type = params.get("type") ?? "";
+  const language: NameLanguage = params.get("sort") === "en" ? "en" : "ru";
   const filtered = useMemo(
-    () => filterExercises(exercises, query, muscle, type),
-    [query, muscle, type],
+    () =>
+      sortExercises(filterExercises(exercises, query, muscle, type), language),
+    [query, muscle, type, language],
   );
   const active = !!(query || muscle || type);
   function setFilter(key: string, value: string) {
@@ -84,9 +82,16 @@ export function Library() {
             Наглядная техника, понятные подсказки
             <br className="desktop-break" /> и внимание к каждому движению.
           </p>
-          <a href="#catalog" className="hero-link">
+          <button
+            onClick={() =>
+              document
+                .getElementById("catalog")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+            className="hero-link"
+          >
             Найти своё упражнение <ArrowDown size={16} />
-          </a>
+          </button>
         </div>
         <div className="hero-art" aria-hidden="true">
           <div className="art-grid" />
@@ -148,21 +153,21 @@ export function Library() {
               </button>
             )}
           </div>
-          <div className="select-field">
-            <label htmlFor="type">
-              <SlidersHorizontal size={16} /> Тип упражнения
-            </label>
-            <select
-              id="type"
-              value={type}
-              onChange={(e) => setFilter("type", e.target.value)}
-            >
-              <option value="">Все типы</option>
-              {exerciseTypes.map((t) => (
-                <option key={t}>{t}</option>
-              ))}
-            </select>
-          </div>
+          <Select
+            label="Тип упражнения"
+            value={type}
+            options={[
+              { value: "", label: "Все типы" },
+              ...exerciseTypes.map((t) => ({ value: t, label: t })),
+            ]}
+            onChange={(value) => setFilter("type", value)}
+          />
+          <Select
+            label="Сортировка упражнений"
+            value={language}
+            options={sortOptions}
+            onChange={(value) => setFilter("sort", value)}
+          />
         </div>
         <div className="muscle-filters" role="group" aria-label="Группа мышц">
           <button

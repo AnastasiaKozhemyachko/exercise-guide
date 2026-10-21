@@ -115,6 +115,13 @@ export function validateContent(
     workoutSlugs.add(w.slug);
     if (!["verified", "needs-review"].includes(String(w.status)))
       errors.push(`Тренировка ${i}: status`);
+    if (w.nameEn !== undefined && !nonempty(w.nameEn))
+      errors.push(`Тренировка ${i}: nameEn`);
+    if (
+      w.aliases !== undefined &&
+      (!Array.isArray(w.aliases) || !w.aliases.every(nonempty))
+    )
+      errors.push(`Тренировка ${i}: aliases`);
     if (w.coverImage !== undefined && !localImage(w.coverImage))
       errors.push(`Тренировка ${i}: coverImage`);
     if (

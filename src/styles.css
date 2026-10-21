@@ -1597,3 +1597,522 @@ h1 {
 .review-notice li + li {
   margin-top: 8px;
 }
+
+/* Shared, fully styled selects */
+.custom-select {
+  position: relative;
+  min-width: 205px;
+  flex-shrink: 0;
+  z-index: 3;
+}
+.custom-select:has(.select-options) {
+  z-index: 15;
+}
+.select-trigger {
+  width: 100%;
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  text-align: left;
+  padding: 9px 15px;
+  border: 1px solid #dce5d5;
+  border-radius: 9px;
+  background: #fff;
+  font-size: 12px;
+  color: #38543c;
+}
+.select-trigger small {
+  display: block;
+  color: #77856d;
+  font-size: 9px;
+  margin-bottom: 3px;
+}
+.select-trigger:hover,
+.select-trigger[aria-expanded="true"] {
+  background: #f0f5eb;
+  border-color: #a8bf98;
+}
+.select-trigger svg {
+  transition: transform 0.2s;
+}
+.rotate-select {
+  transform: rotate(180deg);
+}
+.select-options {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 100%;
+  padding: 6px;
+  border: 1px solid #dce6d3;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 12px 35px #26453020;
+  outline: none;
+}
+.select-options [role="option"] {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  padding: 11px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.select-options .option-active {
+  background: #f1f6eb;
+}
+.select-options [aria-selected="true"] {
+  background: #e5efdc;
+  color: #35592f;
+  font-weight: 600;
+}
+.workout-filters {
+  margin-top: 30px;
+}
+.workout-grid {
+  margin-top: 10px;
+}
+.workout-card .workout-english {
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: -0.3px;
+}
+.workout-card .workout-russian {
+  color: #50654c;
+  font-size: 13px;
+  margin-top: 10px;
+}
+.workout-title {
+  font-size: 36px !important;
+  line-height: 1.3 !important;
+  letter-spacing: -1px !important;
+  overflow-wrap: anywhere;
+}
+.workout-subtitle {
+  font-size: 18px;
+  color: #7e8f72;
+  margin-top: 13px;
+}
+.workout-hero-cover {
+  margin: 28px 0 24px;
+}
+.workout-hero-cover img {
+  width: 100%;
+  max-height: 390px;
+  object-fit: contain;
+  background: #e8efdf;
+  border-radius: 13px;
+}
+.workout-hero-cover figcaption {
+  font-size: 10px;
+  color: #809075;
+  margin-top: 8px;
+}
+.breadcrumbs {
+  font-size: 10px;
+  letter-spacing: 0.7px;
+  color: #7f9172;
+  margin-bottom: 20px;
+}
+.breadcrumbs ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+.breadcrumbs li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.breadcrumbs li + li:before {
+  content: "/";
+  color: #b2bda8;
+}
+.breadcrumbs a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.breadcrumbs [aria-current="page"] {
+  color: #66775a;
+}
+.occurrence-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: #f1f5ec;
+  margin-bottom: 18px;
+}
+.position-indicator {
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  color: #667e57;
+}
+.occurrence-navigation .secondary-button {
+  background: #fff;
+  min-width: 105px;
+}
+.detail-page .instruction-section {
+  margin-bottom: 45px;
+}
+.hero-link {
+  background: none;
+  border-radius: 0;
+}
+.viewer-title {
+  min-width: 0;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.viewer-title strong {
+  overflow-wrap: anywhere;
+}
+.viewer-title > span {
+  white-space: nowrap;
+  font-size: 11px;
+  color: #7e8e71;
+}
+.zoom-scroll.is-zoomed {
+  cursor: grab;
+}
+.zoom-scroll.is-zoomed:active {
+  cursor: grabbing;
+}
+.zoom-scroll img {
+  user-select: none;
+}
+.viewer-error {
+  padding: 30px;
+}
+.zoom-toolbar {
+  flex-shrink: 0;
+}
+.zoom-dialog .zoom-toolbar > div:last-child {
+  flex-shrink: 0;
+}
+.review-page {
+  padding-top: 42px;
+  padding-bottom: 50px;
+}
+.review-page > .eyebrow {
+  color: #86967b;
+  margin-bottom: 15px;
+}
+.review-page h1 {
+  font-size: 42px;
+}
+.review-context {
+  font-size: 11px;
+  color: #8a987e;
+  margin-top: 12px;
+  max-width: 700px;
+}
+.review-progress {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: #567046;
+  margin: 24px 0 18px;
+}
+.review-progress span {
+  color: #abb89f;
+}
+.review-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.review-actions .primary-button,
+.review-actions .secondary-button {
+  gap: 9px;
+}
+.review-feedback {
+  font-size: 12px;
+  min-height: 30px;
+  margin-top: 10px;
+  color: #587147;
+  line-height: 1.8;
+}
+.review-filter-row {
+  margin: 8px 0 24px;
+  max-width: 250px;
+}
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.review-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+.review-image {
+  padding: 12px;
+  background: #f0f4eb;
+  width: 100%;
+  display: block;
+  cursor: zoom-in;
+}
+.review-image img {
+  width: 100%;
+  height: 380px;
+  object-fit: contain;
+}
+.review-card-body {
+  padding: 22px;
+}
+.review-card h2 {
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 550;
+  letter-spacing: -0.4px;
+}
+.review-card .english-name {
+  font-size: 13px;
+  margin: 5px 0 12px;
+}
+.review-state {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 10px;
+  background: #f0f3ec;
+  color: #7b8a70;
+  border-radius: 5px;
+  padding: 4px 8px;
+}
+.state-approved {
+  background: #e9f3e1;
+  color: #4b7338;
+}
+.state-changes_requested {
+  background: #f8ecdd;
+  color: #916f3d;
+}
+.review-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 15px;
+}
+.review-choices button {
+  font-size: 10px;
+  border: 1px solid #dce5d5;
+  border-radius: 6px;
+  min-height: 36px;
+  padding: 7px 9px;
+}
+.review-choices [aria-pressed="true"] {
+  background: #34563f;
+  color: #fff;
+  border-color: #34563f;
+}
+.review-comment {
+  display: block;
+  margin-top: 17px;
+  font-size: 11px;
+  color: #627854;
+}
+.review-comment textarea,
+.manual-report {
+  display: block;
+  width: 100%;
+  resize: vertical;
+  border: 1px solid #cddcc2;
+  border-radius: 8px;
+  background: #fcfdfb;
+  color: #3c5136;
+  min-height: 135px;
+  padding: 12px;
+  font-size: 12px;
+  line-height: 1.8;
+  margin-top: 8px;
+}
+.review-comment textarea::placeholder {
+  color: #94a488;
+}
+.manual-report {
+  min-height: 240px;
+}
+.source-review {
+  font-size: 11px;
+  color: #839476;
+  margin-top: 17px;
+  line-height: 1.8;
+}
+.source-review summary {
+  cursor: pointer;
+  color: #718863;
+}
+.source-review p {
+  margin-top: 10px;
+}
+.source-review ul {
+  padding-left: 16px;
+}
+.source-review li + li {
+  margin-top: 8px;
+}
+.review-storage-error {
+  font-size: 12px;
+  color: #956d35;
+  margin-top: 12px;
+}
+.maintenance-notes {
+  margin-top: 30px;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #839476;
+}
+.maintenance-notes summary {
+  cursor: pointer;
+}
+.maintenance-notes > div {
+  padding: 12px 0;
+}
+@media (min-width: 701px) and (max-width: 1000px) {
+  .filter-panel {
+    flex-wrap: wrap;
+  }
+  .filter-panel .search-field {
+    flex-basis: 100%;
+  }
+  .custom-select {
+    flex: 1;
+  }
+}
+@media (max-width: 700px) {
+  .site-header {
+    height: auto;
+  }
+  .header-inner {
+    flex-wrap: wrap;
+    padding-top: 12px;
+    padding-bottom: 0;
+    min-height: 100px;
+  }
+  .site-header nav {
+    width: 100%;
+    justify-content: space-between;
+    height: 43px;
+    gap: 10px;
+  }
+  .site-header nav a {
+    font-size: 12px;
+  }
+  .custom-select {
+    width: 100%;
+    min-width: 0;
+  }
+  .select-trigger {
+    min-height: 48px;
+  }
+  .select-options {
+    right: 0;
+  }
+  .workout-filters {
+    margin-top: 23px;
+  }
+  .workout-title {
+    font-size: 26px !important;
+  }
+  .workout-subtitle {
+    font-size: 16px;
+  }
+  .workout-hero-cover img {
+    max-height: 260px;
+  }
+  .breadcrumbs {
+    font-size: 9px;
+    line-height: 1.8;
+  }
+  .occurrence-navigation {
+    padding: 8px;
+    gap: 8px;
+  }
+  .occurrence-navigation .secondary-button {
+    min-width: 85px;
+    padding: 8px 11px;
+    gap: 7px;
+  }
+  .zoom-toolbar {
+    height: 102px;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 8px;
+    padding: 9px 12px;
+  }
+  .zoom-toolbar .viewer-title {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .zoom-toolbar .viewer-title strong {
+    max-width: none;
+    font-size: 11px;
+  }
+  .zoom-toolbar > div:last-child {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .zoom-scroll {
+    height: calc(100% - 102px);
+  }
+  .review-page {
+    padding-top: 30px;
+  }
+  .review-page h1 {
+    font-size: 34px;
+  }
+  .review-actions {
+    gap: 10px;
+  }
+  .review-actions .primary-button,
+  .review-actions .secondary-button {
+    width: 100%;
+    font-size: 11px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .review-progress {
+    font-size: 11px;
+    gap: 5px;
+  }
+  .review-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .review-image img {
+    height: 370px;
+  }
+  .review-card-body {
+    padding: 18px;
+  }
+  .review-choices button {
+    font-size: 10px;
+    flex: 1;
+  }
+  .review-card h2 {
+    font-size: 20px;
+  }
+  .review-filter-row {
+    max-width: none;
+  }
+  .review-context {
+    font-size: 10px;
+  }
+}

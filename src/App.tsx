@@ -1,3 +1,4 @@
+import { TechniqueReview } from "./pages/TechniqueReview";
 import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { contentErrors } from "./lib/content";
@@ -6,7 +7,8 @@ import { ExerciseDetail } from "./pages/ExerciseDetail";
 import { Workouts } from "./pages/Workouts";
 import { WorkoutDetail } from "./pages/WorkoutDetail";
 import { NotFound } from "./pages/NotFound";
-const Router = import.meta.env.MODE === "github-pages" ? HashRouter : BrowserRouter;
+const Router =
+  import.meta.env.MODE === "github-pages" ? HashRouter : BrowserRouter;
 
 export default function App() {
   if (contentErrors.length)
@@ -25,6 +27,7 @@ export default function App() {
           <Route index element={<Library />} />
           <Route path="exercises/:slug" element={<ExerciseDetail />} />
           <Route path="workouts" element={<Workouts />} />
+          <Route path="review" element={<TechniqueReview />} />
           <Route path="workouts/:slug" element={<WorkoutDetail />} />
           <Route
             path="examples/workouts/:slug"
