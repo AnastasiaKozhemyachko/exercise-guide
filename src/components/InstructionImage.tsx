@@ -25,7 +25,7 @@ export function Thumbnail({ exercise }: { exercise: Exercise }) {
     <img
       className="exercise-thumbnail"
       src={assetUrl(exercise.thumbnail)}
-      alt={`Карточка: ${exercise.nameRu} (${exercise.nameEn})`}
+      alt={`Карточка: ${exercise.nameEn} (${exercise.nameRu})`}
       loading="lazy"
       onError={() => setFailed(true)}
     />
@@ -45,7 +45,7 @@ export function InstructionImage({
     setReady(false);
     setFailed(false);
   }, [exercise.instructionImage]);
-  const alt = `Карточка техники: ${exercise.nameRu} (${exercise.nameEn})`;
+  const alt = `Карточка техники: ${exercise.nameEn} (${exercise.nameRu})`;
   return (
     <section
       className="instruction-section"
@@ -91,7 +91,7 @@ export function InstructionImage({
       {open && (
         <ImageViewer
           src={assetUrl(exercise.instructionImage)}
-          title={exercise.nameRu}
+          title={exercise.nameEn}
           alt={alt}
           onClose={() => setOpen(false)}
           position={navigation?.position}

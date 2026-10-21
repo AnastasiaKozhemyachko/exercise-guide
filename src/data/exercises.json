@@ -19,7 +19,8 @@
     ],
     "reviewPreview": true,
     "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip",
-    "legacyIds": ["ex-db-squat"]
+    "legacyIds": ["ex-db-squat"],
+    "equipment": ["Гантели"]
   },
   {
     "id": "downward-dog-multi-planar-lunge",
@@ -40,7 +41,8 @@
       "В положении собаки кисти не обязаны находиться вертикально под плечами; подпись требует уточнения. Приподнятая пятка и согнутые колени могут быть допустимой адаптацией."
     ],
     "reviewPreview": true,
-    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip",
+    "equipment": ["Собственный вес"]
   },
   {
     "id": "overhead-squat",
@@ -61,7 +63,8 @@
       "Наклон рук и глубина приседа зависят от подвижности. Не форсируй положение рук над головой ценой боли или прогиба поясницы."
     ],
     "reviewPreview": true,
-    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip",
+    "equipment": ["Собственный вес"]
   },
   {
     "id": "page-turner",
@@ -82,7 +85,8 @@
       "Рисунок и подпись «взгляд следует за рукой вверх» не показывают ясно траекторию верхней руки. Отрыв плеча от пола не всегда ошибка при грудном повороте; не прижимай его силой ради картинки."
     ],
     "reviewPreview": true,
-    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip",
+    "equipment": ["Собственный вес"]
   },
   {
     "id": "side-lying-quad-stretch",
@@ -103,7 +107,8 @@
       "Не тяни пятку к ягодице сильнее ради обязательной глубины. Положение колена и сила натяжения должны оставаться комфортными."
     ],
     "reviewPreview": true,
-    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip",
+    "equipment": ["Собственный вес"]
   },
   {
     "id": "v-sit-reach",
@@ -124,7 +129,8 @@
       "В разделе ошибок согнутые колени ошибочно названы неправильными: лёгкое сгибание может быть допустимым облегчением. На иллюстрации ноги вместе; название V-Sit требует сверки с видео. Не следуй требованию обязательно выпрямлять колени или дотягиваться до стоп."
     ],
     "reviewPreview": true,
-    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip",
+    "equipment": ["Собственный вес"]
   },
   {
     "id": "one-leg-hip-up",
@@ -145,7 +151,8 @@
       "Для опоры сохраняй контакт стопы с полом, не переноси весь вес исключительно на пятку. Высоту таза выбирай без избыточного прогиба поясницы."
     ],
     "reviewPreview": true,
-    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip",
+    "equipment": ["Собственный вес"]
   },
   {
     "id": "pendulum-march",
@@ -166,7 +173,8 @@
       "Схема показывает наклон на одной ноге с подъёмом колена, но точный вариант Pendulum March требуется сверить с видео."
     ],
     "reviewPreview": true,
-    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip",
+    "equipment": ["Гантели"]
   },
   {
     "id": "one-leg-calf-raise",
@@ -187,7 +195,8 @@
       "Высота подъёма и опускания пятки зависит от доступной безболезненной амплитуды. «Максимально высоко» и «недостаточно низко» не универсальные ориентиры."
     ],
     "reviewPreview": true,
-    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip",
+    "equipment": ["Гантели"]
   },
   {
     "id": "db-short-step-lunge",
@@ -197,18 +206,17 @@
     "aliases": [],
     "muscleGroups": ["Ноги", "Ягодицы"],
     "exerciseType": "Силовые",
-    "instructionImage": "/images/hasfit/08_db_short_step_lunge.png",
+    "instructionImage": "/images/hasfit/08_db_short_step_lunge.550580d693d3.png",
     "imageOrigin": "ai-generated-illustration",
     "status": "needs-review",
-    "thumbnail": "/images/hasfit/08_db_short_step_lunge.png",
-    "imageAlt": "Черновик AI-иллюстрации «Короткий выпад с гантелями» (DB Short Step Lunge): положения тела, выноски и раздел ошибок; требует проверки.",
+    "thumbnail": "/images/hasfit/08_db_short_step_lunge.550580d693d3.png",
+    "imageAlt": "DB Short Step Lunge — Короткий выпад с гантелями: утверждённая карточка техники.",
     "sourceStatus": "needs-technique-and-text-review",
-    "reviewNote": "Проверить биомеханику, русские подписи и соответствие демонстрации в видео до использования как авторитетной инструкции.",
-    "reviewIssues": [
-      "Наклон корпуса и длина шага зависят от варианта выпада. Не сокращай шаг только из-за ощущения нагрузки в колене; при боли остановись и пересмотри нагрузку и технику."
-    ],
+    "reviewNote": "Новая версия карточки утверждена пользователем 21 октября 2026 года.",
+    "reviewIssues": [],
     "reviewPreview": true,
-    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip",
+    "equipment": ["Гантели"]
   },
   {
     "id": "one-leg-balance",
@@ -229,7 +237,8 @@
       "Колено ниже уровня таза само по себе не является ошибкой: допустимая высота зависит от устойчивости и подвижности."
     ],
     "reviewPreview": true,
-    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip",
+    "equipment": ["Собственный вес"]
   },
   {
     "id": "curtsy-lunge",
@@ -250,7 +259,8 @@
       "Небольшой наклон корпуса допустим в зависимости от варианта. Не задавай обязательную глубину или величину перекрёстного шага по рисунку."
     ],
     "reviewPreview": true,
-    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip",
+    "equipment": ["Гантели"]
   },
   {
     "id": "fire-hydrant-pulse",
@@ -271,6 +281,7 @@
       "Выноски «кисти под плечами» и «колени под тазом» указывают не на соответствующие суставы. Иллюстрация не задаёт обязательную высоту подъёма бедра."
     ],
     "reviewPreview": true,
-    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip"
+    "contentSource": "HASfit_Exercise_Library_Codex_Complete.zip",
+    "equipment": ["Собственный вес"]
   }
 ]

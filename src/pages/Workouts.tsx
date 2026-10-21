@@ -2,24 +2,24 @@ import { Link, useSearchParams } from "react-router-dom";
 import { ArrowRight, Search, X } from "lucide-react";
 import { assetUrl } from "../lib/assetUrl";
 import { workouts } from "../lib/content";
-import {
-  searchWorkouts,
-  workoutEnglish,
-  sortOptions,
-  type NameLanguage,
-} from "../lib/catalog";
+import { searchWorkouts, workoutEnglish, presentOptions } from "../lib/catalog";
+import { muscleGroups, exerciseTypes, equipmentTypes } from "../data/types";
 import { Select } from "../components/Select";
 import { useTitle } from "../lib/useTitle";
 export function Workouts() {
   useTitle("Тренировки");
   const [params, setParams] = useSearchParams();
   const query = params.get("q") || "";
-  const language: NameLanguage = params.get("sort") === "ru" ? "ru" : "en";
-  const filtered = searchWorkouts(workouts, query, language);
+  const muscle = params.get("muscle") || "";
+  const type = params.get("type") || "";
+  const equipment = params.get("equipment") || "";
+  const filtered = searchWorkouts(workouts, query, { muscle, type, equipment });
+  const active = !!(query || muscle || type || equipment);
   function update(key: string, value: string) {
     setParams(
       (previous) => {
         const next = new URLSearchParams(previous);
+        next.delete("sort");
         value ? next.set(key, value) : next.delete(key);
         return next;
       },
@@ -53,17 +53,47 @@ export function Workouts() {
           )}
         </div>
         <Select
-          label="Сортировка тренировок"
-          value={language}
-          options={sortOptions}
-          onChange={(value) => update("sort", value)}
+          label="Направление тренировки"
+          value={muscle}
+          options={[
+            { value: "", label: "Все направления" },
+            ...presentOptions(
+              muscleGroups,
+              workouts.flatMap((w) => w.muscleGroups || []),
+            ),
+          ]}
+          onChange={(value) => update("muscle", value)}
+        />
+        <Select
+          label="Тип тренировки"
+          value={type}
+          options={[
+            { value: "", label: "Все типы" },
+            ...presentOptions(
+              exerciseTypes,
+              workouts.flatMap((w) => w.workoutTypes || []),
+            ),
+          ]}
+          onChange={(value) => update("type", value)}
+        />
+        <Select
+          label="Оборудование"
+          value={equipment}
+          options={[
+            { value: "", label: "Любое оборудование" },
+            ...presentOptions(
+              equipmentTypes,
+              workouts.flatMap((w) => w.equipment || []),
+            ),
+          ]}
+          onChange={(value) => update("equipment", value)}
         />
       </div>
       <div className="results-bar">
         <span role="status">Найдено тренировок: {filtered.length}</span>
-        {query && (
-          <button className="text-button" onClick={() => update("q", "")}>
-            Сбросить поиск
+        {active && (
+          <button className="text-button" onClick={() => setParams({})}>
+            Сбросить фильтры
           </button>
         )}
       </div>
@@ -102,8 +132,8 @@ export function Workouts() {
           <Search size={28} />
           <h2>Тренировки не найдены</h2>
           <p>Попробуй другое название или очисти поиск.</p>
-          <button className="primary-button" onClick={() => update("q", "")}>
-            Сбросить поиск
+          <button className="primary-button" onClick={() => setParams({})}>
+            Сбросить фильтры
           </button>
         </div>
       )}

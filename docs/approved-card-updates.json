@@ -1,0 +1,9 @@
+{
+  "db-short-step-lunge": {
+    "source": "DB_Short_Step_Lunge_Approved_Codex.zip/cards/db-short-step-lunge.png",
+    "previousImage": "/images/hasfit/08_db_short_step_lunge.png",
+    "image": "/images/hasfit/08_db_short_step_lunge.550580d693d3.png",
+    "sha256": "550580d693d3adc846ae9972ad64453464ade4ba8e1e6ca8253330e437ea93f9",
+    "approvalRevision": "hasfit-owner-approved-2026-10-21-v1"
+  }
+}

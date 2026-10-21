@@ -2116,3 +2116,48 @@ h1 {
     font-size: 10px;
   }
 }
+
+/* English titles lead; Russian remains visible as secondary context. */
+.secondary-name {
+  color: #7e8f72;
+  font-size: 13px;
+  margin-top: 7px;
+  line-height: 1.6;
+}
+.detail-heading .secondary-name {
+  font-size: 20px;
+  margin-top: 8px;
+}
+.review-card .secondary-name {
+  font-size: 13px;
+  margin: 5px 0 12px;
+}
+.workout-filters {
+  flex-wrap: wrap;
+}
+.workout-filters .search-field {
+  flex-basis: 100%;
+}
+.workout-filters .custom-select {
+  flex: 1;
+  min-width: 180px;
+}
+.review-page .empty-state {
+  min-height: 150px;
+  background: #f4f8ef;
+  border-style: solid;
+}
+.review-page .empty-state h2 {
+  font-size: 23px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+@media (max-width: 700px) {
+  .detail-heading .secondary-name {
+    font-size: 17px;
+  }
+  .workout-filters .custom-select {
+    min-width: 0;
+    flex: auto;
+  }
+}

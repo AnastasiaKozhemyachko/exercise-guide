@@ -1,3 +1,4 @@
+import approvedUpdates from "../../docs/approved-card-updates.json";
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -44,8 +45,9 @@ describe("импорт предоставленного пакета HASfit", ()
       "/images/hasfit/02_one_leg_hip_up.png",
     );
   });
-  it("сохраняет все 13 полноразмерных PNG без изменения байтов", () => {
+  it("сохраняет остальные 12 PNG и заменяет только разрешённую карточку", () => {
     for (const [name, hash] of Object.entries(imageHashes)) {
+      if (name === "08_db_short_step_lunge.png") continue;
       const bytes = readFileSync(
         new URL(`../../public/images/hasfit/${name}`, import.meta.url),
       );
@@ -53,6 +55,23 @@ describe("импорт предоставленного пакета HASfit", ()
       expect(createHash("sha256").update(bytes).digest("hex")).toBe(hash);
       expect(bytes.readUInt32BE(16)).toBeGreaterThanOrEqual(1000);
     }
+  });
+  it("использует точные байты нового утверждённого PNG по адресу с новым хешем", () => {
+    const update = approvedUpdates["db-short-step-lunge"];
+    const e = getExerciseById("db-short-step-lunge")!;
+    expect(e.instructionImage).toBe(update.image);
+    expect(e.thumbnail).toBe(update.image);
+    expect(e.instructionImage).not.toBe(update.previousImage);
+    const bytes = readFileSync(
+      new URL(`../../public${e.instructionImage}`, import.meta.url),
+    );
+    expect(createHash("sha256").update(bytes).digest("hex")).toBe(
+      update.sha256,
+    );
+    expect([bytes.readUInt32BE(16), bytes.readUInt32BE(20)]).toEqual([
+      1122, 1402,
+    ]);
+    expect(e.reviewIssues).toEqual([]);
   });
   it("не допускает выдавать непроверенный порядок за подтверждённый", () => {
     expect(

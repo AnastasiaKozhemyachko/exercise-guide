@@ -3,6 +3,7 @@ import rawWorkouts from "../data/workouts.json";
 import rawFixtures from "../data/workouts.fixtures.json";
 import {
   exerciseTypes,
+  equipmentTypes,
   muscleGroups,
   type Exercise,
   type Workout,
@@ -88,6 +89,13 @@ export function validateContent(
       errors.push(`Упражнение ${i}: muscleGroups`);
     if (!exerciseTypes.includes(e.exerciseType as never))
       errors.push(`Упражнение ${i}: exerciseType`);
+    if (
+      e.equipment !== undefined &&
+      (!Array.isArray(e.equipment) ||
+        !e.equipment.length ||
+        !e.equipment.every((v) => equipmentTypes.includes(v)))
+    )
+      errors.push(`Упражнение ${i}: equipment`);
     if (!localImage(e.thumbnail) || !localImage(e.instructionImage))
       errors.push(`Упражнение ${i}: путь изображения`);
     if (!["verified", "needs-review"].includes(String(e.status)))
@@ -115,6 +123,20 @@ export function validateContent(
     workoutSlugs.add(w.slug);
     if (!["verified", "needs-review"].includes(String(w.status)))
       errors.push(`Тренировка ${i}: status`);
+    for (const [key, allowed] of [
+      ["muscleGroups", muscleGroups],
+      ["workoutTypes", exerciseTypes],
+      ["equipment", equipmentTypes],
+    ] as const) {
+      const value = w[key];
+      if (
+        value !== undefined &&
+        (!Array.isArray(value) ||
+          !value.length ||
+          !value.every((v) => (allowed as readonly unknown[]).includes(v)))
+      )
+        errors.push(`Тренировка ${i}: ${key}`);
+    }
     if (w.nameEn !== undefined && !nonempty(w.nameEn))
       errors.push(`Тренировка ${i}: nameEn`);
     if (
@@ -184,6 +206,7 @@ export function filterExercises(
   query: string,
   muscle: string,
   type: string,
+  equipment = "",
 ): Exercise[] {
   const normalize = (s: string) =>
     s.toLocaleLowerCase("ru").replace(/ё/g, "е").trim();
@@ -193,7 +216,8 @@ export function filterExercises(
     return (
       words.every((word) => search.includes(word)) &&
       (!muscle || e.muscleGroups.includes(muscle as never)) &&
-      (!type || e.exerciseType === type)
+      (!type || e.exerciseType === type) &&
+      (!equipment || e.equipment?.includes(equipment as never))
     );
   });
 }

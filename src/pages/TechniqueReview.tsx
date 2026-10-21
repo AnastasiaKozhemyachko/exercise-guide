@@ -18,14 +18,18 @@ import { Select } from "../components/Select";
 export function TechniqueReview() {
   useTitle("Проверка техники");
   const { results, update, storageError } = useReview();
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("queue");
   const [viewingId, setViewingId] = useState<string | null>(null);
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
   const [manualReport, setManualReport] = useState("");
   const importer = useRef<HTMLInputElement>(null);
   const filtered = exercises.filter(
-    (e) => filter === "all" || reviewFor(results, e.id).status === filter,
+    (e) =>
+      filter === "all" ||
+      (filter === "queue"
+        ? reviewFor(results, e.id).status !== "approved"
+        : reviewFor(results, e.id).status === filter),
   );
   const viewingIndex = exercises.findIndex((e) => e.id === viewingId);
   const viewing = exercises[viewingIndex];
@@ -165,6 +169,7 @@ export function TechniqueReview() {
           label="Статус проверки"
           value={filter}
           options={[
+            { value: "queue", label: "Требуют проверки" },
             { value: "all", label: "Все карточки" },
             ...Object.entries(reviewStatuses).map(([value, label]) => ({
               value,
@@ -181,18 +186,18 @@ export function TechniqueReview() {
             <article
               className="review-card"
               key={e.id}
-              aria-label={`Проверка: ${e.nameRu}`}
+              aria-label={`Проверка: ${e.nameEn}`}
             >
               <button
                 className="review-image"
-                aria-label={`Рассмотреть: ${e.nameRu}`}
+                aria-label={`Рассмотреть: ${e.nameEn}`}
                 onClick={() => setViewingId(e.id)}
               >
                 <Thumbnail exercise={e} />
               </button>
               <div className="review-card-body">
-                <h2>{e.nameRu}</h2>
-                <p className="english-name">{e.nameEn}</p>
+                <h2>{e.nameEn}</h2>
+                <p className="secondary-name">{e.nameRu}</p>
                 <span className={`review-state state-${review.status}`}>
                   {review.status === "approved" && <Check size={13} />}{" "}
                   {reviewStatuses[review.status]}
@@ -200,7 +205,7 @@ export function TechniqueReview() {
                 <div
                   className="review-choices"
                   role="group"
-                  aria-label={`Оценка: ${e.nameRu}`}
+                  aria-label={`Оценка: ${e.nameEn}`}
                 >
                   {(["approved", "changes_requested", "pending"] as const).map(
                     (status) => (
@@ -226,15 +231,17 @@ export function TechniqueReview() {
                     />
                   </label>
                 )}
-                <details className="source-review">
-                  <summary>Замечания к исходной карточке</summary>
-                  <p>{e.reviewNote}</p>
-                  <ul>
-                    {e.reviewIssues?.map((issue) => (
-                      <li key={issue}>{issue}</li>
-                    ))}
-                  </ul>
-                </details>
+                {review.status !== "approved" && (
+                  <details className="source-review">
+                    <summary>Замечания к исходной карточке</summary>
+                    <p>{e.reviewNote}</p>
+                    <ul>
+                      {e.reviewIssues?.map((issue) => (
+                        <li key={issue}>{issue}</li>
+                      ))}
+                    </ul>
+                  </details>
+                )}
               </div>
             </article>
           );
@@ -242,7 +249,13 @@ export function TechniqueReview() {
       </div>
       {!filtered.length && (
         <div className="empty-state">
-          <h2>С таким статусом пока нет карточек</h2>
+          <h2>
+            {filter === "queue" &&
+            counts.pending === 0 &&
+            counts.changes_requested === 0
+              ? "Все карточки проверены ✓"
+              : "С таким статусом пока нет карточек"}
+          </h2>
           <button className="secondary-button" onClick={() => setFilter("all")}>
             Показать все
           </button>
@@ -260,8 +273,8 @@ export function TechniqueReview() {
       {viewing && (
         <ImageViewer
           src={assetUrl(viewing.instructionImage)}
-          title={`${viewing.nameRu} · ${viewing.nameEn}`}
-          alt={viewing.imageAlt}
+          title={`${viewing.nameEn} · ${viewing.nameRu}`}
+          alt={`Карточка техники: ${viewing.nameEn} (${viewing.nameRu})`}
           position={`${viewingIndex + 1} / ${exercises.length}`}
           onClose={() => setViewingId(null)}
           onPrevious={

@@ -43,7 +43,7 @@ export function ExerciseDetail() {
   const next = url(1);
   const touch = useRef<{ x: number; y: number } | null>(null);
   const swiped = useRef(false);
-  useTitle(exercise?.nameRu || "Упражнение не найдено");
+  useTitle(exercise?.nameEn || "Упражнение не найдено");
   useEffect(() => {
     if (!context) return;
     function keys(e: KeyboardEvent) {
@@ -87,13 +87,13 @@ export function ExerciseDetail() {
         items={[
           { label: "Библиотека", to: "/" },
           ...(context ? [{ label: "Тренировка", to: back }] : []),
-          { label: exercise.nameRu },
+          { label: exercise.nameEn },
         ]}
       />
       <div className="detail-heading">
         <div>
-          <h1>{exercise.nameRu}</h1>
-          <p className="english-name">{exercise.nameEn}</p>
+          <h1>{exercise.nameEn}</h1>
+          <p className="secondary-name">{exercise.nameRu}</p>
         </div>
         <span className="detail-type">
           <Dumbbell size={17} />
@@ -194,7 +194,7 @@ export function ExerciseDetail() {
           <h2>В тренировках</h2>
           {related.map((w) => (
             <Link key={w.id} to={`/workouts/${w.slug}`}>
-              {w.title}
+              {w.nameEn || w.originalTitle || w.title}
               <ArrowRight size={16} />
             </Link>
           ))}

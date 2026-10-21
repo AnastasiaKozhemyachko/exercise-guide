@@ -1,0 +1,57 @@
+{
+  "revision": "hasfit-owner-approved-2026-10-21-v1",
+  "approvals": {
+    "db-squat": {
+      "status": "approved",
+      "clearPreviousNote": false
+    },
+    "downward-dog-multi-planar-lunge": {
+      "status": "approved",
+      "clearPreviousNote": false
+    },
+    "overhead-squat": {
+      "status": "approved",
+      "clearPreviousNote": false
+    },
+    "page-turner": {
+      "status": "approved",
+      "clearPreviousNote": false
+    },
+    "side-lying-quad-stretch": {
+      "status": "approved",
+      "clearPreviousNote": false
+    },
+    "v-sit-reach": {
+      "status": "approved",
+      "clearPreviousNote": false
+    },
+    "one-leg-hip-up": {
+      "status": "approved",
+      "clearPreviousNote": false
+    },
+    "pendulum-march": {
+      "status": "approved",
+      "clearPreviousNote": false
+    },
+    "one-leg-calf-raise": {
+      "status": "approved",
+      "clearPreviousNote": false
+    },
+    "one-leg-balance": {
+      "status": "approved",
+      "clearPreviousNote": false
+    },
+    "curtsy-lunge": {
+      "status": "approved",
+      "clearPreviousNote": false
+    },
+    "fire-hydrant-pulse": {
+      "status": "approved",
+      "clearPreviousNote": false
+    },
+    "db-short-step-lunge": {
+      "status": "approved",
+      "clearPreviousNote": true
+    }
+  }
+}

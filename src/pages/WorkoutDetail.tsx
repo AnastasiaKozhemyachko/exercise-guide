@@ -74,8 +74,8 @@ export function WorkoutDetail({ fixture = false }: { fixture?: boolean }) {
                     {String(o.order).padStart(2, "0")}
                   </span>
                   <span>
-                    <strong>{e.nameRu}</strong>
-                    <small>{e.nameEn}</small>
+                    <strong>{e.nameEn}</strong>
+                    <small>{e.nameRu}</small>
                   </span>
                   <ArrowRight size={19} />
                 </Link>

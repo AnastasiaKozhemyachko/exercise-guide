@@ -1,3 +1,4 @@
+import approvalData from "../data/review-approvals.json";
 import JSZip from "jszip";
 import type { Exercise } from "../data/types";
 import { assetUrl } from "./assetUrl";
@@ -11,11 +12,44 @@ export interface CardReview {
   status: ReviewStatus;
   note: string;
   updatedAt?: string;
+  approvalRevision?: string;
 }
 export type ReviewState = Record<string, CardReview>;
 export const reviewStorageKey = "exercise-guide.technique-review.v1";
+export const approvalRevision = approvalData.revision;
+const approvals: Record<
+  string,
+  { status: "approved"; clearPreviousNote: boolean }
+> = approvalData.approvals as Record<
+  string,
+  { status: "approved"; clearPreviousNote: boolean }
+>;
+function confirmedApproval(id: string): CardReview | undefined {
+  return approvals[id]
+    ? { status: "approved", note: "", approvalRevision }
+    : undefined;
+}
+/** One-time owner confirmation. Later decisions carrying this revision stay editable. */
+export function migrateConfirmedApprovals(
+  state: ReviewState,
+  fillMissing = true,
+): ReviewState {
+  const next = { ...state };
+  for (const [id, approval] of Object.entries(approvals)) {
+    const old = state[id];
+    if ((!fillMissing && !old) || old?.approvalRevision === approvalRevision)
+      continue;
+    next[id] = {
+      ...old,
+      status: "approved",
+      note: approval.clearPreviousNote ? "" : old?.note || "",
+      approvalRevision,
+    };
+  }
+  return next;
+}
 export function reviewFor(state: ReviewState, id: string): CardReview {
-  return state[id] || { status: "pending", note: "" };
+  return state[id] || confirmedApproval(id) || { status: "pending", note: "" };
 }
 export function parseStoredReview(value: string | null): ReviewState {
   if (!value) return {};
@@ -40,6 +74,9 @@ export function parseStoredReview(value: string | null): ReviewState {
       status: v.status,
       note: v.note,
       ...(typeof v.updatedAt === "string" ? { updatedAt: v.updatedAt } : {}),
+      ...(typeof v.approvalRevision === "string"
+        ? { approvalRevision: v.approvalRevision }
+        : {}),
     };
   }
   return result;
@@ -66,7 +103,7 @@ export function reviewReport(
     if (!entries.length) parts.push("Нет карточек.");
     for (const e of entries) {
       parts.push(
-        `### ${e.nameRu} / ${e.nameEn}\nID: ${e.id}\nИзображение в ZIP: cards/${e.id}.png`,
+        `### ${e.nameEn} / ${e.nameRu}\nID: ${e.id}\nИзображение в ZIP: cards/${e.id}.png`,
       );
       if (status === "changes_requested")
         parts.push(
@@ -120,9 +157,12 @@ export function importResults(
       ...(typeof entry.updatedAt === "string"
         ? { updatedAt: entry.updatedAt }
         : {}),
+      ...(typeof entry.approvalRevision === "string"
+        ? { approvalRevision: entry.approvalRevision }
+        : {}),
     };
   }
-  return result;
+  return migrateConfirmedApprovals(result, false);
 }
 export async function createReviewZip(
   exercises: Exercise[],

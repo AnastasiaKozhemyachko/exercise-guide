@@ -22,13 +22,15 @@ test("каталог: поиск, новые фильтры с клавиату�
   await page.getByRole("button", { name: "Спина", exact: true }).click();
   await expect(page.getByText("Такого упражнения пока нет")).toBeVisible();
   await page.getByRole("button", { name: "Сбросить фильтры" }).first().click();
+  await expect(page.getByRole("searchbox")).toHaveValue("");
   await page
     .getByRole("button", { name: "Тип упражнения", exact: true })
     .focus();
   await page.keyboard.press("ArrowDown");
+  await expect(page.getByRole("listbox")).toBeFocused();
   await page.keyboard.press("End");
   await page.keyboard.press("Enter");
-  await expect(page.getByRole("status")).toHaveText("Найдено упражнений: 0");
+  await expect(page.getByRole("status")).toHaveText("Найдено упражнений: 3");
   await page.getByRole("button", { name: "Сбросить фильтры" }).first().click();
   await page.locator('a[href="/exercises/db-squat"]').click();
   await expect(page.locator(".instruction-paper img")).toBeVisible();
@@ -44,7 +46,7 @@ test("каталог: поиск, новые фильтры с клавиату�
   await expect(page).toHaveURL("/exercises/db-squat");
   expect(errors).toEqual([]);
 });
-test("тренировки: двуязычный поиск, сортировка и отсутствие технических блоков", async ({
+test("тренировки: двуязычный поиск, фильтры и отсутствие технических блоков", async ({
   page,
 }) => {
   await page.goto("/workouts");
@@ -53,11 +55,14 @@ test("тренировки: двуязычный поиск, сортировк�
   await expect(page.getByRole("status")).toHaveText("Найдено тренировок: 1");
   await search.fill("ноги ягодицы");
   await expect(page.getByRole("status")).toHaveText("Найдено тренировок: 1");
-  await choose(page, "Сортировка тренировок", "По русскому · А–Я");
-  await expect(page).toHaveURL(/sort=ru/);
+  await expect(page.getByRole("button", { name: /Сортировка/ })).toHaveCount(0);
+  await choose(page, "Направление тренировки", "Ноги");
+  await choose(page, "Тип тренировки", "Силовые");
+  await choose(page, "Оборудование", "Гантели");
+  await expect(page.getByRole("status")).toHaveText("Найдено тренировок: 1");
   await search.fill("unknown");
   await expect(page.getByRole("status")).toHaveText("Найдено тренировок: 0");
-  await page.getByRole("button", { name: "Сбросить поиск" }).first().click();
+  await page.getByRole("button", { name: "Сбросить фильтры" }).first().click();
   await expect(page.getByText("Как выглядит подборка")).toHaveCount(0);
   await page.locator(`a[href="${workout}"]`).click();
   await expect(page.locator(".sequence-list li")).toHaveCount(25);
@@ -82,9 +87,7 @@ test("карточки тренировки: повторы, стрелки, к�
   await expect(page.locator(".position-indicator")).toHaveText("4 / 25");
   await page.keyboard.press("ArrowRight");
   await expect(page.locator(".position-indicator")).toHaveText("5 / 25");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Присед с гантелями",
-  );
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("DB Squat");
   await page.keyboard.press("ArrowLeft");
   await expect(page.locator(".position-indicator")).toHaveText("4 / 25");
   await page.reload();
@@ -96,12 +99,14 @@ test("проверка: статусы, комментарии, фильтр, с
   page,
 }) => {
   await page.goto("/review");
+  await choose(page, "Статус проверки", "Все карточки");
   const card = page.getByRole("article", {
-    name: "Проверка: Присед с гантелями",
+    name: "Проверка: DB Squat",
     exact: true,
   });
   await card.getByRole("button", { name: "Всё хорошо", exact: true }).click();
   await page.reload();
+  await choose(page, "Статус проверки", "Все карточки");
   await expect(
     card.getByRole("button", { name: "Всё хорошо", exact: true }),
   ).toHaveAttribute("aria-pressed", "true");
@@ -126,8 +131,9 @@ test("просмотр проверки: масштаб, панорамиров�
   page,
 }) => {
   await page.goto("/review");
+  await choose(page, "Статус проверки", "Все карточки");
   const trigger = page.getByRole("button", {
-    name: "Рассмотреть: Присед с гантелями",
+    name: "Рассмотреть: DB Squat",
     exact: true,
   });
   await trigger.click();
@@ -163,6 +169,7 @@ test("копирование отчёта: все группы и точный �
     });
   });
   await page.goto("/review");
+  await choose(page, "Статус проверки", "Все карточки");
   const cards = page.getByRole("article");
   await cards
     .nth(0)
@@ -191,6 +198,7 @@ test("ZIP: все PNG с ID, JSON и комментарии; экспорт не
   page,
 }) => {
   await page.goto("/review");
+  await choose(page, "Статус проверки", "Все карточки");
   const card = page.getByRole("article").first();
   await card
     .getByRole("button", { name: "Нужны исправления", exact: true })
@@ -279,6 +287,7 @@ test("отказ clipboard показывает отчёт для ручного
     });
   });
   await page.goto("/review");
+  await choose(page, "Статус проверки", "Все карточки");
   await page
     .getByRole("button", {
       name: "Скопировать результаты проверки",
@@ -305,9 +314,10 @@ test("свайп следует по вхождениям тренировки �
   });
   await expect(page.locator(".position-indicator")).toHaveText("4 / 25");
   await page.goto("/review");
+  await choose(page, "Статус проверки", "Все карточки");
   await page
     .getByRole("button", {
-      name: "Рассмотреть: Присед с гантелями",
+      name: "Рассмотреть: DB Squat",
       exact: true,
     })
     .click();
@@ -341,4 +351,144 @@ test("увеличенный просмотр тренировки остаёт�
   await expect(page.locator(".viewer-title")).toContainText("4 / 25");
   await page.keyboard.press("Escape");
   await expect(page.locator(".position-indicator")).toHaveText("4 / 25");
+});
+
+test("13 одобрений мигрируют старые оценки, удаляют прежнее замечание и не сбрасывают чужие записи", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    if (localStorage.getItem("approval-seeded")) return;
+    localStorage.setItem("approval-seeded", "yes");
+    localStorage.setItem(
+      "exercise-guide.technique-review.v1",
+      JSON.stringify({
+        version: 1,
+        results: {
+          "db-short-step-lunge": {
+            status: "changes_requested",
+            note: "OBSOLETE LUNGE",
+          },
+          "db-squat": { status: "pending", note: "" },
+          "other-workout-exercise": {
+            status: "changes_requested",
+            note: "KEEP UNRELATED",
+          },
+        },
+      }),
+    );
+  });
+  await page.goto("/review");
+  await expect(
+    page.getByRole("heading", {
+      name: "Все карточки проверены ✓",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(page.getByRole("article")).toHaveCount(0);
+  await expect(page.locator(".review-progress")).toContainText("13 проверено");
+  const stored = await page.evaluate(
+    () =>
+      JSON.parse(localStorage.getItem("exercise-guide.technique-review.v1")!)
+        .results,
+  );
+  expect(stored["db-short-step-lunge"].note).toBe("");
+  expect(stored["other-workout-exercise"].note).toBe("KEEP UNRELATED");
+  await page.reload();
+  await expect(
+    page.getByRole("heading", { name: "Все карточки проверены ✓" }),
+  ).toBeVisible();
+  await choose(page, "Статус проверки", "Всё хорошо");
+  await expect(page.getByRole("article")).toHaveCount(13);
+  await choose(page, "Статус проверки", "Все карточки");
+  const card = page.getByRole("article", {
+    name: "Проверка: DB Squat",
+    exact: true,
+  });
+  await card
+    .getByRole("button", { name: "Нужны исправления", exact: true })
+    .click();
+  await card.getByRole("textbox").fill("Новое решение после одобрения");
+  await page.reload();
+  await expect(page.getByRole("article")).toHaveCount(1);
+  await expect(
+    page.getByRole("textbox", { name: "Что исправить" }),
+  ).toHaveValue("Новое решение после одобрения");
+});
+test("новая карточка выпада используется везде, русское имя вторично, оборудование фильтруется", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(page.getByRole("button", { name: /Сортировка/ })).toHaveCount(0);
+  await choose(page, "Оборудование", "Гантели");
+  await expect(page.getByRole("status")).toHaveText("Найдено упражнений: 5");
+  await page.getByRole("searchbox").fill("короткий выпад");
+  await expect(page.getByRole("status")).toHaveText("Найдено упражнений: 1");
+  await expect(page.locator(".exercise-card h2")).toHaveText(
+    "DB Short Step Lunge",
+  );
+  await expect(page.locator(".exercise-card .secondary-name")).toHaveText(
+    "Короткий выпад с гантелями",
+  );
+  const thumb = await page.locator(".exercise-card img").getAttribute("src");
+  expect(thumb).toMatch(/08_db_short_step_lunge\.[a-f0-9]{12}\.png$/);
+  await page.locator(".exercise-card").click();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "DB Short Step Lunge",
+  );
+  await expect(page.locator(".instruction-paper img")).toHaveAttribute(
+    "src",
+    thumb!,
+  );
+  await expect
+    .poll(() =>
+      page
+        .locator(".instruction-paper img")
+        .evaluate((e: HTMLImageElement) => [e.naturalWidth, e.naturalHeight]),
+    )
+    .toEqual([1122, 1402]);
+  await page.goto("/workouts/hasfit-legs-glutes-dumbbells");
+  await expect(
+    page.locator(".sequence-list li").nth(12).locator("strong"),
+  ).toHaveText("DB Short Step Lunge");
+  await expect(page.locator(".sequence-list li")).toHaveCount(25);
+  await page.goto("/review");
+  await choose(page, "Статус проверки", "Всё хорошо");
+  const card = page.getByRole("article", {
+    name: "Проверка: DB Short Step Lunge",
+    exact: true,
+  });
+  await expect(card.locator("h2")).toHaveText("DB Short Step Lunge");
+  await expect(card.locator("img")).toHaveAttribute("src", thumb!);
+});
+test("импорт устаревшего JSON не возвращает старый комментарий к выпаду", async ({
+  page,
+}) => {
+  await page.goto("/review");
+  await page.getByLabel("Импорт результатов проверки").setInputFiles({
+    name: "review-results.json",
+    mimeType: "application/json",
+    buffer: Buffer.from(
+      JSON.stringify({
+        version: 1,
+        exercises: [
+          {
+            id: "db-short-step-lunge",
+            status: "changes_requested",
+            note: "OLD CORRECTION",
+          },
+        ],
+      }),
+    ),
+  });
+  await expect(
+    page.getByRole("heading", { name: "Все карточки проверены ✓" }),
+  ).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole("article")).toHaveCount(0);
+  const note = await page.evaluate(
+    () =>
+      JSON.parse(localStorage.getItem("exercise-guide.technique-review.v1")!)
+        .results["db-short-step-lunge"].note,
+  );
+  expect(note).toBe("");
 });

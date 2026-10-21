@@ -9,11 +9,22 @@ import {
   importResults,
   parseStoredReview,
   type ReviewState,
+  reviewFor,
+  migrateConfirmedApprovals,
+  approvalRevision,
 } from "./review";
 const note = "Первая строка: колено → вправо\n\n  Вторая строка с пробелами.  ";
 const state: ReviewState = {
-  [exercises[0].id]: { status: "approved", note: "" },
-  [exercises[1].id]: { status: "changes_requested", note },
+  [exercises[0].id]: {
+    ...reviewFor({}, exercises[0].id),
+    status: "approved",
+    note: "",
+  },
+  [exercises[1].id]: {
+    ...reviewFor({}, exercises[1].id),
+    status: "changes_requested",
+    note,
+  },
 };
 it("экспортирует все статусы и комментарий дословно, не меняя оценки", () => {
   const report = reviewReport(exercises, state);
@@ -70,4 +81,59 @@ it("не экспортирует HTML вместо отсутствующего
       async () => new TextEncoder().encode("<html>not an image</html>").buffer,
     ),
   ).rejects.toThrow("PNG");
+});
+
+it("одобряет ровно 13 карточек, удаляет старое замечание к выпаду, сохраняет чужие решения", () => {
+  const other = {
+    status: "changes_requested" as const,
+    note: "Комментарий другого набора",
+  };
+  const old: ReviewState = {
+    "db-short-step-lunge": {
+      status: "changes_requested",
+      note: "Старый комментарий",
+    },
+    other,
+  };
+  const migrated = migrateConfirmedApprovals(old);
+  for (const e of exercises) expect(migrated[e.id].status).toBe("approved");
+  expect(migrated["db-short-step-lunge"].note).toBe("");
+  expect(migrated.other).toEqual(other);
+  expect(old["db-short-step-lunge"].note).toBe("Старый комментарий");
+  const changed = {
+    ...migrated,
+    "db-squat": {
+      status: "changes_requested" as const,
+      note: "Новое решение",
+      approvalRevision,
+    },
+  };
+  expect(migrateConfirmedApprovals(changed)["db-squat"].note).toBe(
+    "Новое решение",
+  );
+  expect(migrateConfirmedApprovals(changed)["db-squat"].status).toBe(
+    "changes_requested",
+  );
+});
+it("старый JSON не возвращает отменённые замечания, новые решения можно переносить", () => {
+  const imported = importResults(
+    JSON.stringify({
+      version: 1,
+      exercises: [
+        {
+          id: "db-short-step-lunge",
+          status: "changes_requested",
+          note: "obsolete",
+        },
+      ],
+    }),
+    exercises,
+  );
+  expect(imported["db-short-step-lunge"]).toEqual({
+    status: "approved",
+    note: "",
+    approvalRevision,
+  });
+  expect(Object.keys(imported)).toEqual(["db-short-step-lunge"]);
+  expect(reviewFor({}, "future-exercise").status).toBe("pending");
 });

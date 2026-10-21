@@ -1,19 +1,24 @@
 import { useEffect, useState } from "react";
 import {
   parseStoredReview,
+  migrateConfirmedApprovals,
   reviewStorageKey,
   type ReviewState,
 } from "./review";
 export function useReview() {
   const [initial] = useState(() => {
     try {
-      return {
-        results: parseStoredReview(localStorage.getItem(reviewStorageKey)),
-        error: "",
-      };
+      const old = parseStoredReview(localStorage.getItem(reviewStorageKey));
+      const results = migrateConfirmedApprovals(old);
+      if (JSON.stringify(old) !== JSON.stringify(results))
+        localStorage.setItem(
+          reviewStorageKey,
+          JSON.stringify({ version: 1, results }),
+        );
+      return { results, error: "" };
     } catch {
       return {
-        results: {} as ReviewState,
+        results: migrateConfirmedApprovals({}),
         error:
           "Не удалось прочитать сохранённые оценки. Экспортируй результаты этой сессии, прежде чем закрывать страницу.",
       };
@@ -42,7 +47,14 @@ export function useReview() {
     const listener = (e: StorageEvent) => {
       if (e.key === reviewStorageKey) {
         try {
-          setResults(parseStoredReview(e.newValue));
+          const old = parseStoredReview(e.newValue);
+          const results = migrateConfirmedApprovals(old);
+          if (JSON.stringify(old) !== JSON.stringify(results))
+            localStorage.setItem(
+              reviewStorageKey,
+              JSON.stringify({ version: 1, results }),
+            );
+          setResults(results);
         } catch {
           setStorageError("Не удалось прочитать изменения из другой вкладки.");
         }

@@ -14,6 +14,8 @@ export const exerciseTypes = [
   "Растяжка",
   "Мобильность",
 ] as const;
+export const equipmentTypes = ["Гантели", "Собственный вес", "Другое"] as const;
+export type Equipment = (typeof equipmentTypes)[number];
 export type MuscleGroup = (typeof muscleGroups)[number];
 export type ExerciseType = (typeof exerciseTypes)[number];
 export interface Exercise {
@@ -24,6 +26,7 @@ export interface Exercise {
   aliases: string[];
   muscleGroups: MuscleGroup[];
   exerciseType: ExerciseType;
+  equipment?: Equipment[];
   thumbnail: string;
   instructionImage: string;
   imageAlt: string;
@@ -58,6 +61,9 @@ export interface Workout {
   aliases?: string[];
   summary?: string;
   coverCredit?: string;
+  muscleGroups?: MuscleGroup[];
+  workoutTypes?: ExerciseType[];
+  equipment?: Equipment[];
   reviewNote?: string;
   verificationStatus?: "sequence-unverified" | "sequence-verified";
 }

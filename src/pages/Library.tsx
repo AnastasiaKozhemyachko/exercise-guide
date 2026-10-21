@@ -1,5 +1,5 @@
 import { Select } from "../components/Select";
-import { sortExercises, sortOptions, type NameLanguage } from "../lib/catalog";
+import { presentOptions } from "../lib/catalog";
 import { useMemo } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import {
@@ -15,7 +15,12 @@ import {
 } from "lucide-react";
 import { Thumbnail } from "../components/InstructionImage";
 import { exercises, filterExercises } from "../lib/content";
-import { exerciseTypes, muscleGroups, type Exercise } from "../data/types";
+import {
+  exerciseTypes,
+  muscleGroups,
+  equipmentTypes,
+  type Exercise,
+} from "../data/types";
 import { useTitle } from "../lib/useTitle";
 function ExerciseCard({ exercise }: { exercise: Exercise }) {
   return (
@@ -31,8 +36,8 @@ function ExerciseCard({ exercise }: { exercise: Exercise }) {
         </span>
       </div>
       <div className="card-copy">
-        <span className="eyebrow">{exercise.nameEn}</span>
-        <h2>{exercise.nameRu}</h2>
+        <h2>{exercise.nameEn}</h2>
+        <p className="secondary-name">{exercise.nameRu}</p>
         <div className="muscle-tags">
           {exercise.muscleGroups.map((m) => (
             <span key={m}>{m}</span>
@@ -48,17 +53,17 @@ export function Library() {
   const query = params.get("q") ?? "";
   const muscle = params.get("muscle") ?? "";
   const type = params.get("type") ?? "";
-  const language: NameLanguage = params.get("sort") === "en" ? "en" : "ru";
+  const equipment = params.get("equipment") || "";
   const filtered = useMemo(
-    () =>
-      sortExercises(filterExercises(exercises, query, muscle, type), language),
-    [query, muscle, type, language],
+    () => filterExercises(exercises, query, muscle, type, equipment),
+    [query, muscle, type, equipment],
   );
-  const active = !!(query || muscle || type);
+  const active = !!(query || muscle || type || equipment);
   function setFilter(key: string, value: string) {
     setParams(
       (previous) => {
         const p = new URLSearchParams(previous);
+        p.delete("sort");
         value ? p.set(key, value) : p.delete(key);
         return p;
       },
@@ -158,15 +163,24 @@ export function Library() {
             value={type}
             options={[
               { value: "", label: "Все типы" },
-              ...exerciseTypes.map((t) => ({ value: t, label: t })),
+              ...presentOptions(
+                exerciseTypes,
+                exercises.map((e) => e.exerciseType),
+              ),
             ]}
             onChange={(value) => setFilter("type", value)}
           />
           <Select
-            label="Сортировка упражнений"
-            value={language}
-            options={sortOptions}
-            onChange={(value) => setFilter("sort", value)}
+            label="Оборудование"
+            value={equipment}
+            options={[
+              { value: "", label: "Любое оборудование" },
+              ...presentOptions(
+                equipmentTypes,
+                exercises.flatMap((e) => e.equipment || []),
+              ),
+            ]}
+            onChange={(value) => setFilter("equipment", value)}
           />
         </div>
         <div className="muscle-filters" role="group" aria-label="Группа мышц">
